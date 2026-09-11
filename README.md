@@ -53,7 +53,7 @@ data_gen/              generator + requirements
 data/raw/              source-system extracts (upload to Lakehouse Files/raw)
 fabric/notebooks/      01_bronze_ingest · 02_silver_clean · 03_gold_star_schema  (.py = source, .ipynb = Fabric import)
 fabric/fabric_setup_guide.md   click-path guide: workspace, lakehouse with schemas, notebooks, pipeline
-semantic_model/        measures.dax (40 commented measures), model_guide.md (relationships, date table, RLS note)
+semantic_model/        measures.dax (41 commented measures), model_guide.md (relationships, date table, RLS note)
 report/                report_spec.md (4 pages, visual by visual), screenshots/
 ai_product/            Lead Intelligence Assistant: signals.py, train_lead_scorer.py, llm.py, app.py, model/
 docs/                  data_dictionary, dq_injections (ground truth), presentation_outline
