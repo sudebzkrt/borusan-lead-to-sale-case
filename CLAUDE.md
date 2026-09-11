@@ -59,5 +59,4 @@ Local runs write parquet tables (Delta jars need Maven access); Fabric writes De
 | Fabric click path | `fabric/fabric_setup_guide.md` |
 | DAX and relationships | `semantic_model/measures.dax`, `semantic_model/model_guide.md` |
 | Report pages | `report/report_spec.md` |
-| How to explain everything (Turkish) | `docs/sude_walkthrough_tr.md` |
 | Slides | `docs/presentation_outline.md` |

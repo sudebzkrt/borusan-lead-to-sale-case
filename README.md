@@ -56,7 +56,7 @@ fabric/fabric_setup_guide.md   click-path guide: workspace, lakehouse with schem
 semantic_model/        measures.dax (40 commented measures), model_guide.md (relationships, date table, RLS note)
 report/                report_spec.md (4 pages, visual by visual), screenshots/
 ai_product/            Lead Intelligence Assistant: signals.py, train_lead_scorer.py, llm.py, app.py, model/
-docs/                  data_dictionary, dq_injections (ground truth), sude_walkthrough_tr, presentation_outline
+docs/                  data_dictionary, dq_injections (ground truth), presentation_outline
 ```
 
 ## Part 1 – Medallion on Fabric
