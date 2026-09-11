@@ -1,0 +1,39 @@
+vehicle_id,brand,model,trim,body_type,fuel_type,segment,list_price_try,model_year
+V001,BMW,1 Serisi,118i M Sport,Hatchback,Petrol,Compact,3450000,2026
+V002,BMW,2 Serisi Gran Coupe,218i M Sport,Sedan,Petrol,Compact,3900000,2026
+V003,BMW,3 Serisi,320i M Sport,Sedan,Petrol,Premium Mid,4650000,2026
+V004,BMW,3 Serisi,320d xDrive M Sport,Sedan,Diesel,Premium Mid,5100000,2026
+V005,BMW,5 Serisi,520i M Sport,Sedan,Petrol,Executive,6900000,2026
+V006,BMW,5 Serisi,530e xDrive,Sedan,PHEV,Executive,7800000,2026
+V007,BMW,7 Serisi,740d xDrive,Sedan,Diesel,Luxury,14500000,2026
+V008,BMW,X1,sDrive18i M Sport,SUV,Petrol,Compact SUV,4200000,2026
+V009,BMW,X1,xDrive25e M Sport,SUV,PHEV,Compact SUV,4900000,2026
+V010,BMW,X2,sDrive20i M Sport,SUV,Petrol,Compact SUV,4600000,2026
+V011,BMW,X3,xDrive20d M Sport,SUV,Diesel,Mid SUV,6400000,2026
+V012,BMW,X3,xDrive30e M Sport,SUV,PHEV,Mid SUV,7100000,2026
+V013,BMW,X5,xDrive30d M Sport,SUV,Diesel,Large SUV,11200000,2026
+V014,BMW,X5,xDrive50e M Sport,SUV,PHEV,Large SUV,12300000,2026
+V015,BMW,X7,xDrive40d M Sport,SUV,Diesel,Luxury SUV,16800000,2026
+V016,BMW,i4,eDrive40 M Sport,Gran Coupe,Electric,Premium Mid,5300000,2026
+V017,BMW,iX1,eDrive20 M Sport,SUV,Electric,Compact SUV,4100000,2026
+V018,BMW,iX1,xDrive30 M Sport,SUV,Electric,Compact SUV,4700000,2026
+V019,BMW,iX2,eDrive20 M Sport,SUV,Electric,Compact SUV,4500000,2026
+V020,BMW,iX3,50 xDrive,SUV,Electric,Mid SUV,6600000,2026
+V021,BMW,i5,eDrive40 M Sport,Sedan,Electric,Executive,7400000,2026
+V022,BMW,iX,xDrive45,SUV,Electric,Large SUV,9800000,2026
+V023,BMW,i7,xDrive60,Sedan,Electric,Luxury,15900000,2026
+V024,MINI,Cooper,C Classic,Hatchback,Petrol,Premium Small,2650000,2026
+V025,MINI,Cooper,S Favoured,Hatchback,Petrol,Premium Small,3050000,2026
+V026,MINI,Cooper,E Classic,Hatchback,Electric,Premium Small,2900000,2026
+V027,MINI,Countryman,C Favoured,SUV,Petrol,Compact SUV,3700000,2026
+V028,MINI,Countryman,E Favoured,SUV,Electric,Compact SUV,4000000,2026
+V029,MINI,Aceman,E Favoured,Crossover,Electric,Premium Small,3300000,2026
+V030,Land Rover,Defender,110 D250 SE,SUV,Diesel,Large SUV,11900000,2026
+V031,Land Rover,Defender,90 P300 X-Dynamic,SUV,Petrol,Large SUV,10800000,2026
+V032,Land Rover,Discovery Sport,D200 Dynamic SE,SUV,Diesel,Mid SUV,6200000,2026
+V033,Land Rover,Range Rover Evoque,P160 Dynamic SE,SUV,Petrol,Compact SUV,5400000,2026
+V034,Land Rover,Range Rover Evoque,P300e Dynamic HSE,SUV,PHEV,Compact SUV,6100000,2026
+V035,Land Rover,Range Rover Velar,D200 Dynamic SE,SUV,Diesel,Mid SUV,7900000,2026
+V036,Land Rover,Range Rover Sport,D300 Dynamic SE,SUV,Diesel,Large SUV,14200000,2026
+V037,Land Rover,Range Rover Sport,P460e Autobiography,SUV,PHEV,Large SUV,17500000,2026
+V038,Land Rover,Range Rover,D350 Autobiography,SUV,Diesel,Luxury SUV,22000000,2026

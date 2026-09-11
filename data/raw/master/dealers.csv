@@ -1,0 +1,15 @@
+dealer_id,dealer_name,city,region,dealer_type,opened_year,is_active
+D001,Borusan Oto İstinye,İstanbul,Marmara,own_retail,2006,True
+D002,Borusan Oto Avcılar,İstanbul,Marmara,own_retail,2018,True
+D003,Borusan Oto Çekmeköy,İstanbul,Marmara,own_retail,2016,True
+D004,Borusan Oto Kartal,İstanbul,Marmara,own_retail,2012,True
+D005,Borusan Oto Ankara Çankaya,Ankara,İç Anadolu,own_retail,2012,True
+D006,Borusan Oto Ankara Esenboğa,Ankara,İç Anadolu,own_retail,2019,True
+D007,Borusan Oto İzmir,İzmir,Ege,own_retail,2006,True
+D008,Borusan Oto Bursa,Bursa,Marmara,own_retail,2016,True
+D009,Borusan Oto Antalya,Antalya,Akdeniz,own_retail,2008,True
+D010,Borusan Oto Kocaeli,Kocaeli,Marmara,own_retail,2006,True
+D011,Adana Yetkili Bayi,Adana,Akdeniz,authorized_dealer,2013,True
+D012,Gaziantep Yetkili Bayi,Gaziantep,Güneydoğu,authorized_dealer,2021,True
+D013,Samsun Yetkili Bayi,Samsun,Karadeniz,authorized_dealer,2017,True
+D014,Eskişehir Yetkili Bayi,Eskişehir,İç Anadolu,authorized_dealer,2017,True

@@ -1,0 +1,176 @@
+// =====================================================================================
+//  Semantic model measures — Borusan Lead-to-Sale
+//  Paste each block into the model (Fabric web modelling: select a table > New measure)
+//  or into Power BI Desktop. Keep all measures in the "_Measures" table (see relationships.md).
+//
+//  Conventions
+//    * Facts are never summed implicitly; every KPI is an explicit measure.
+//    * Rates return BLANK() when the denominator is 0 (DIVIDE) so visuals stay clean.
+//    * Time intelligence uses dim_date (marked as date table) on fact_leads[created_date_key].
+// =====================================================================================
+
+
+// ---------- Volume ------------------------------------------------------------------
+
+Leads = COUNTROWS ( fact_leads )
+
+Open Leads = CALCULATE ( [Leads], fact_leads[is_open] = TRUE () )
+
+Won Leads = CALCULATE ( [Leads], fact_leads[is_won] = TRUE () )
+
+Lost Leads = CALCULATE ( [Leads], fact_leads[is_lost] = TRUE () )
+
+Test Drives = CALCULATE ( [Leads], fact_leads[has_test_drive] = TRUE () )
+
+Offers Made = CALCULATE ( [Leads], fact_leads[has_offer] = TRUE () )
+
+Units Sold = COUNTROWS ( fact_sales )
+
+
+// ---------- Funnel rates ------------------------------------------------------------
+
+// Share of all leads that ended in a sale. Open leads are in the denominator on purpose:
+// this is the "as of today" conversion. See [Conversion Rate (Closed)] for the alternative.
+Lead-to-Sale Conversion = DIVIDE ( [Won Leads], [Leads] )
+
+// Conversion among leads that already have an outcome — the fairer number for recent months.
+Conversion Rate (Closed) =
+DIVIDE ( [Won Leads], [Won Leads] + [Lost Leads] )
+
+Test Drive Rate = DIVIDE ( [Test Drives], [Leads] )
+
+Offer Rate = DIVIDE ( [Offers Made], [Leads] )
+
+// Of the leads that got an offer, how many bought.
+Offer Acceptance Rate =
+DIVIDE (
+    CALCULATE ( [Won Leads], fact_leads[has_offer] = TRUE () ),
+    [Offers Made]
+)
+
+// Of the leads that took a test drive, how many bought.
+Test Drive Conversion =
+DIVIDE (
+    CALCULATE ( [Won Leads], fact_leads[has_test_drive] = TRUE () ),
+    [Test Drives]
+)
+
+
+// Response-time effect: chart [Lead-to-Sale Conversion] by fact_leads[response_band] (sort that column by
+// response_band_order). Dealer-level averages (6.4–8.0 h) hide the effect; the bands show it clearly.
+
+// ---------- Speed -------------------------------------------------------------------
+
+Avg First Response (h) = AVERAGE ( fact_leads[first_response_hours] )
+
+// SLA: first contact within 24 hours.
+Response SLA Met % =
+DIVIDE (
+    CALCULATE ( [Leads], fact_leads[response_within_24h] = TRUE () ),
+    CALCULATE ( [Leads], NOT ISBLANK ( fact_leads[first_response_hours] ) )
+)
+
+Avg Days to Sale =
+CALCULATE ( AVERAGE ( fact_leads[days_to_sale] ), fact_leads[is_won] = TRUE () )
+
+Avg Days to Test Drive = AVERAGE ( fact_leads[days_to_test_drive] )
+
+// Open leads older than 30 days with no interaction in the last 14 days — the "stale pipeline".
+Stale Open Leads =
+CALCULATE (
+    [Leads],
+    fact_leads[is_open] = TRUE (),
+    fact_leads[lead_age_days] > 30,
+    fact_leads[days_since_last_interaction] > 14
+)
+
+Stale Pipeline % = DIVIDE ( [Stale Open Leads], [Open Leads] )
+
+
+// ---------- Money -------------------------------------------------------------------
+
+Revenue (TRY) = SUM ( fact_sales[final_price_try] )
+
+Revenue (M TRY) = DIVIDE ( [Revenue (TRY)], 1000000 )
+
+Avg Sale Price (TRY) = AVERAGE ( fact_sales[final_price_try] )
+
+List Value Sold (TRY) = SUM ( fact_sales[list_price_try] )
+
+Discount Given (TRY) = SUM ( fact_sales[discount_try] )
+
+// Weighted realised discount = money left on the table / list value.
+Realised Discount % = DIVIDE ( [Discount Given (TRY)], [List Value Sold (TRY)] )
+
+// discount_pct is stored as 4.5 (= 4.5 %). Divide by 100 so the measure can be formatted as a percentage
+// like every other rate; without the division a "%" format shows 450 %.
+Avg Offer Discount % = DIVIDE ( AVERAGE ( fact_offers[discount_pct] ), 100 )
+
+Financing Share =
+DIVIDE (
+    CALCULATE ( [Units Sold], fact_sales[payment_type] = "financing" ),
+    [Units Sold]
+)
+
+Pipeline Value (TRY) =
+CALCULATE ( SUM ( fact_leads[offer_final_price_try] ), fact_leads[is_open] = TRUE (), fact_leads[has_offer] = TRUE () )
+
+
+// ---------- Time intelligence (needs dim_date marked as date table) ------------------
+
+Leads PY = CALCULATE ( [Leads], SAMEPERIODLASTYEAR ( dim_date[date] ) )
+
+Leads YoY % = DIVIDE ( [Leads] - [Leads PY], [Leads PY] )
+
+Revenue PY = CALCULATE ( [Revenue (TRY)], SAMEPERIODLASTYEAR ( dim_date[date] ) )
+
+Revenue YoY % = DIVIDE ( [Revenue (TRY)] - [Revenue PY], [Revenue PY] )
+
+// Rolling 3-month conversion — smooths the monthly noise on the trend line.
+Conversion 3M Rolling =
+VAR _end = MAX ( dim_date[date] )
+VAR _start = EDATE ( _end, -3 ) + 1
+RETURN
+    CALCULATE ( [Lead-to-Sale Conversion], DATESBETWEEN ( dim_date[date], _start, _end ) )
+
+
+// ---------- Ranking / business logic ------------------------------------------------
+
+// Rank dealers by conversion inside the current filter context (used in the dealer table).
+// Guards: blank on the Total row (HASONEVALUE), rank only dealers that actually have leads (FILTER),
+// and leave the UNK member out of the ranking.
+Dealer Conversion Rank =
+IF (
+    HASONEVALUE ( dim_dealer[dealer_name] ) && [Leads] > 0 && SELECTEDVALUE ( dim_dealer[dealer_name] ) <> "Unknown dealer",
+    RANKX (
+        FILTER ( ALL ( dim_dealer[dealer_name] ), [Leads] > 0 && dim_dealer[dealer_name] <> "Unknown dealer" ),
+        [Lead-to-Sale Conversion], , DESC, DENSE
+    )
+)
+
+// A dealer is "at risk" when it converts at less than 75% of the network average.
+Dealer Performance Flag =
+IF ( NOT HASONEVALUE ( dim_dealer[dealer_name] ), BLANK (),   // no flag on the Total row
+VAR _dealer = [Lead-to-Sale Conversion]
+VAR _network = CALCULATE ( [Lead-to-Sale Conversion], ALL ( dim_dealer ) )
+RETURN
+    SWITCH ( TRUE (), ISBLANK ( _dealer ), "n/a", _dealer < 0.75 * _network, "At risk", _dealer > 1.25 * _network, "Star", "On track" ) )
+
+// Lost-reason share within the lost population.
+Lost Reason Share =
+DIVIDE ( [Lost Leads], CALCULATE ( [Lost Leads], ALL ( fact_leads[lost_reason] ) ) )
+
+
+// ---------- Data quality (dq_results) -----------------------------------------------
+
+DQ Failed Rows = SUM ( dq_results[failed_rows] )
+
+DQ Error Checks =
+CALCULATE ( COUNTROWS ( dq_results ), dq_results[severity] = "error", dq_results[failed_rows] > 0 )
+
+DQ Failed % = DIVIDE ( SUM ( dq_results[failed_rows] ), SUM ( dq_results[total_rows] ) )
+
+// Leads with at least one flag — displayed next to KPIs so users know what share of data was repaired.
+Leads With DQ Flags = CALCULATE ( [Leads], fact_leads[dq_flag_count] > 0 )
+
+Leads With DQ Flags % = DIVIDE ( [Leads With DQ Flags], [Leads] )
