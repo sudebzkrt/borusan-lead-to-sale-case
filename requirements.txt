@@ -7,3 +7,5 @@ scikit-learn>=1.4
 streamlit>=1.50
 openai>=1.30
 jupytext>=1.16
+tabulate>=0.9
+pymupdf>=1.24

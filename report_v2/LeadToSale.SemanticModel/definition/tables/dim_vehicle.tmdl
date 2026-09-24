@@ -1,0 +1,131 @@
+table dim_vehicle
+	lineageTag: 777ec7f7-45cc-451b-8021-1608c3e6e3a5
+
+	column vehicle_id
+		dataType: string
+		isHidden
+		lineageTag: 040a9a53-86ab-4982-8222-f9e4c3d60379
+		summarizeBy: none
+		sourceColumn: vehicle_id
+
+		annotation SummarizationSetBy = User
+
+	column brand
+		dataType: string
+		lineageTag: 2836315c-94e5-410d-bd24-a35ae4f9230b
+		summarizeBy: none
+		sourceColumn: brand
+
+		annotation SummarizationSetBy = User
+
+	column model
+		dataType: string
+		lineageTag: 12b4d6f1-6f31-4c64-8228-8f724f0bf589
+		summarizeBy: none
+		sourceColumn: model
+
+		annotation SummarizationSetBy = User
+
+	column trim
+		dataType: string
+		lineageTag: e6f7540e-6ef7-47ce-9892-48e7c1d4ae21
+		summarizeBy: none
+		sourceColumn: trim
+
+		annotation SummarizationSetBy = User
+
+	column body_type
+		dataType: string
+		lineageTag: 10984d25-82ce-40c5-8958-42db95dfa33a
+		summarizeBy: none
+		sourceColumn: body_type
+
+		annotation SummarizationSetBy = User
+
+	column fuel_type
+		dataType: string
+		lineageTag: 66f61880-4c1b-4e04-b876-a84465d46ca8
+		summarizeBy: none
+		sourceColumn: fuel_type
+
+		annotation SummarizationSetBy = User
+
+	column segment
+		dataType: string
+		lineageTag: ceb633e9-778a-4072-8104-fbc26dc30d1b
+		summarizeBy: none
+		sourceColumn: segment
+
+		annotation SummarizationSetBy = User
+
+	column list_price_try
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9d4ff1e2-56ea-4734-b89b-e6c607fde79b
+		summarizeBy: none
+		sourceColumn: list_price_try
+
+		annotation SummarizationSetBy = User
+
+	column model_year
+		dataType: int64
+		formatString: 0
+		lineageTag: 75db0272-63c9-4369-9c81-a3456dd1ee4c
+		summarizeBy: none
+		sourceColumn: model_year
+
+		annotation SummarizationSetBy = User
+
+	column model_label
+		dataType: string
+		lineageTag: e8cad5bb-6466-4e1a-88c1-563452720747
+		summarizeBy: none
+		sourceColumn: model_label
+
+		annotation SummarizationSetBy = User
+
+	column trim_label
+		dataType: string
+		lineageTag: 20ebb661-9338-416e-91ab-75b7712c0ad0
+		summarizeBy: none
+		sourceColumn: trim_label
+
+		annotation SummarizationSetBy = User
+
+	column price_band
+		dataType: string
+		lineageTag: 3f713a2c-b894-484e-8202-c65fb60d9fb7
+		summarizeBy: none
+		sourceColumn: price_band
+		sortByColumn: price_band_order
+
+		annotation SummarizationSetBy = User
+
+	column price_band_order
+		dataType: int64
+		isHidden
+		lineageTag: 91da13c2-64fe-437a-9614-0c32cd53330e
+		summarizeBy: none
+		sourceColumn: price_band_order
+
+		annotation SummarizationSetBy = User
+
+	column is_electrified
+		dataType: boolean
+		lineageTag: 896ac0db-0491-4cf4-b99f-25bbc07624f2
+		summarizeBy: none
+		sourceColumn: is_electrified
+
+		annotation SummarizationSetBy = User
+
+	partition dim_vehicle = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_vehicle\dim_vehicle.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

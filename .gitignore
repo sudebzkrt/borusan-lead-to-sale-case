@@ -8,3 +8,11 @@ derby.log
 metastore_db/
 *.pbix
 .env
+report_v2/.fabric_backup*/
+.DS_Store
+~$*
+.claude/
+docs/presentation_v2.pptx
+docs/build_deck_v2.js
+*.pptx
+!presentation.pptx

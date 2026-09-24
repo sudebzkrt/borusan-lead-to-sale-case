@@ -1,0 +1,25 @@
+{
+  "next_best_action": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["summary", "action", "draft_message", "confidence"],
+    "properties": {
+      "summary": {"type": "string", "minLength": 10, "maxLength": 300},
+      "action": {"type": "string", "minLength": 5, "maxLength": 220},
+      "draft_message": {"type": "string", "maxLength": 500},
+      "confidence": {"type": "string", "enum": ["low", "medium", "high"]}
+    }
+  },
+  "signal_extraction": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["intent", "main_objection", "went_quiet", "buying_signal", "summary"],
+    "properties": {
+      "intent": {"type": "string", "enum": ["low", "medium", "high"]},
+      "main_objection": {"type": "string", "enum": ["price", "financing", "stock", "timing", "competitor", "none"]},
+      "went_quiet": {"type": "boolean"},
+      "buying_signal": {"type": "boolean"},
+      "summary": {"type": "string", "minLength": 10, "maxLength": 300}
+    }
+  }
+}

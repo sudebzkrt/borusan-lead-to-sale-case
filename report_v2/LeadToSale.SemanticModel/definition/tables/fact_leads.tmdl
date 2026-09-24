@@ -1,0 +1,494 @@
+table fact_leads
+	lineageTag: 4a0b98c8-840c-443e-910d-6c96693ee9e5
+
+	column lead_id
+		dataType: string
+		lineageTag: 3a0f19d8-507a-4932-903e-80ebe96fd8db
+		summarizeBy: none
+		sourceColumn: lead_id
+
+		annotation SummarizationSetBy = User
+
+	column customer_id
+		dataType: string
+		isHidden
+		lineageTag: 34909550-a596-47ca-a545-742cecfa95f6
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = User
+
+	column dealer_id
+		dataType: string
+		isHidden
+		lineageTag: 97aaedcb-8059-4bb8-8676-a090b5e224b5
+		summarizeBy: none
+		sourceColumn: dealer_id
+
+		annotation SummarizationSetBy = User
+
+	column advisor_id
+		dataType: string
+		isHidden
+		lineageTag: d660ab70-d9b1-4d83-a442-1211f2cb75ec
+		summarizeBy: none
+		sourceColumn: advisor_id
+
+		annotation SummarizationSetBy = User
+
+	column vehicle_id
+		dataType: string
+		isHidden
+		lineageTag: eaeb7d60-88e7-4a87-8b82-10b357b7d951
+		summarizeBy: none
+		sourceColumn: vehicle_id
+
+		annotation SummarizationSetBy = User
+
+	column source
+		dataType: string
+		isHidden
+		lineageTag: 82e23761-2eb4-4ca9-91bf-a26da29be2ed
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = User
+
+	column campaign_name
+		dataType: string
+		lineageTag: 39129755-1547-479f-b175-897b484c8c80
+		summarizeBy: none
+		sourceColumn: campaign_name
+
+		annotation SummarizationSetBy = User
+
+	column utm_source
+		dataType: string
+		lineageTag: fd62fb12-be86-4086-8eff-5f340613e318
+		summarizeBy: none
+		sourceColumn: utm_source
+
+		annotation SummarizationSetBy = User
+
+	column utm_medium
+		dataType: string
+		lineageTag: 6d7659eb-6175-49e3-82c0-749ee577fa94
+		summarizeBy: none
+		sourceColumn: utm_medium
+
+		annotation SummarizationSetBy = User
+
+	column created_at
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 13e3589f-a453-4f02-b27d-b2c1f7535ebf
+		summarizeBy: none
+		sourceColumn: created_at
+
+		annotation SummarizationSetBy = User
+
+	column created_date_key
+		dataType: int64
+		isHidden
+		lineageTag: 2d5d1f82-90b0-475d-bd68-6c11cceb30ac
+		summarizeBy: none
+		sourceColumn: created_date_key
+
+		annotation SummarizationSetBy = User
+
+	column first_contact_at
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 16e452cc-e86d-40cd-abfb-327c04848ab0
+		summarizeBy: none
+		sourceColumn: first_contact_at
+
+		annotation SummarizationSetBy = User
+
+	column closed_at
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 354976c5-db96-428b-973e-0640856fab2e
+		summarizeBy: none
+		sourceColumn: closed_at
+
+		annotation SummarizationSetBy = User
+
+	column closed_date_key
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ebe20608-1394-4445-bc31-a67b8d252042
+		summarizeBy: none
+		sourceColumn: closed_date_key
+
+		annotation SummarizationSetBy = User
+
+	column status
+		dataType: string
+		lineageTag: 846bb09c-e35a-41fc-b992-d673c3aa4794
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = User
+
+	column lost_reason
+		dataType: string
+		lineageTag: 5395cef0-4660-4187-872d-eeb9a3847a18
+		summarizeBy: none
+		sourceColumn: lost_reason
+
+		annotation SummarizationSetBy = User
+
+	column is_won
+		dataType: boolean
+		lineageTag: 2eeaeb9b-2d22-45bb-a6e3-97e4446b88b6
+		summarizeBy: none
+		sourceColumn: is_won
+
+		annotation SummarizationSetBy = User
+
+	column is_lost
+		dataType: boolean
+		lineageTag: 6f25e6d1-d651-4138-98a9-e6d540a3d602
+		summarizeBy: none
+		sourceColumn: is_lost
+
+		annotation SummarizationSetBy = User
+
+	column is_open
+		dataType: boolean
+		lineageTag: 074ba12f-cd4c-473c-8470-abd8508bddab
+		summarizeBy: none
+		sourceColumn: is_open
+
+		annotation SummarizationSetBy = User
+
+	column first_response_hours
+		dataType: double
+		isHidden
+		lineageTag: faa17e2d-7526-4e9e-af97-ab5785d937a5
+		summarizeBy: none
+		sourceColumn: first_response_hours
+
+		annotation SummarizationSetBy = User
+
+	column response_within_24h
+		dataType: boolean
+		lineageTag: a4ef7d1a-12c9-4d89-bafb-ddca25f2f420
+		summarizeBy: none
+		sourceColumn: response_within_24h
+
+		annotation SummarizationSetBy = User
+
+	column response_band
+		dataType: string
+		lineageTag: 4e9f1d8a-e3e7-47b6-b61b-992e246c262d
+		summarizeBy: none
+		sourceColumn: response_band
+		sortByColumn: response_band_order
+
+		annotation SummarizationSetBy = User
+
+	column response_band_order
+		dataType: int64
+		isHidden
+		lineageTag: d70594a3-1223-4535-b760-17522d75dba6
+		summarizeBy: none
+		sourceColumn: response_band_order
+
+		annotation SummarizationSetBy = User
+
+	column budget_try
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 55416b7b-e76c-4832-94a9-7c3e0883a0f5
+		summarizeBy: none
+		sourceColumn: budget_try
+
+		annotation SummarizationSetBy = User
+
+	column trade_in
+		dataType: boolean
+		lineageTag: 3125ef90-372a-47bc-8d51-ce8607e81456
+		summarizeBy: none
+		sourceColumn: trade_in
+
+		annotation SummarizationSetBy = User
+
+	column has_test_drive
+		dataType: boolean
+		lineageTag: 2e352d9c-b701-49e3-b867-b49c733eee4f
+		summarizeBy: none
+		sourceColumn: has_test_drive
+
+		annotation SummarizationSetBy = User
+
+	column test_drive_count
+		dataType: int64
+		isHidden
+		lineageTag: 005059fe-1dc5-4114-b03e-071189042387
+		summarizeBy: none
+		sourceColumn: test_drive_count
+
+		annotation SummarizationSetBy = User
+
+	column first_test_drive_at
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 9000820a-42df-4a9f-8879-b69f3764dc33
+		summarizeBy: none
+		sourceColumn: first_test_drive_at
+
+		annotation SummarizationSetBy = User
+
+	column test_drive_satisfaction
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 256fe32a-a782-4728-a717-6cf9429b5c5f
+		summarizeBy: none
+		sourceColumn: test_drive_satisfaction
+
+		annotation SummarizationSetBy = User
+
+	column days_to_test_drive
+		dataType: double
+		isHidden
+		lineageTag: 0435ef89-28f8-4d0d-b247-7606cf941950
+		summarizeBy: none
+		sourceColumn: days_to_test_drive
+
+		annotation SummarizationSetBy = User
+
+	column has_offer
+		dataType: boolean
+		lineageTag: 9cd1da64-7f4b-4871-bf41-4d088d8f4e69
+		summarizeBy: none
+		sourceColumn: has_offer
+
+		annotation SummarizationSetBy = User
+
+	column offer_count
+		dataType: int64
+		isHidden
+		lineageTag: add84962-2b37-4107-98a8-52657815e56d
+		summarizeBy: none
+		sourceColumn: offer_count
+
+		annotation SummarizationSetBy = User
+
+	column last_offer_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 61a57468-d0ea-460d-82c7-8a5bfab6c002
+		summarizeBy: none
+		sourceColumn: last_offer_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column offer_discount_pct
+		dataType: double
+		isHidden
+		lineageTag: 283d42c9-b78f-4b16-9646-0fe077952940
+		summarizeBy: none
+		sourceColumn: offer_discount_pct
+
+		annotation SummarizationSetBy = User
+
+	column offer_final_price_try
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a509190d-25cd-4198-923f-7e282c05dc05
+		summarizeBy: none
+		sourceColumn: offer_final_price_try
+
+		annotation SummarizationSetBy = User
+
+	column offer_financing
+		dataType: boolean
+		lineageTag: dea462d4-7904-4348-a344-d70d573e3e7e
+		summarizeBy: none
+		sourceColumn: offer_financing
+
+		annotation SummarizationSetBy = User
+
+	column last_offer_status
+		dataType: string
+		lineageTag: 067b8373-4aa6-4d27-adb0-3c7a7f6e9ac2
+		summarizeBy: none
+		sourceColumn: last_offer_status
+
+		annotation SummarizationSetBy = User
+
+	column days_to_offer
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ab184c0f-0a61-4611-b634-4932a886585a
+		summarizeBy: none
+		sourceColumn: days_to_offer
+
+		annotation SummarizationSetBy = User
+
+	column has_sale
+		dataType: boolean
+		lineageTag: 0e7aa18a-c395-47a3-846f-85619cec5c49
+		summarizeBy: none
+		sourceColumn: has_sale
+
+		annotation SummarizationSetBy = User
+
+	column sale_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: a5cb7cf3-40dc-4d82-b9fb-ff00b0f6855d
+		summarizeBy: none
+		sourceColumn: sale_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column sale_amount_try
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 12cec236-c100-4213-a6c5-20a04d05dc7f
+		summarizeBy: none
+		sourceColumn: sale_amount_try
+
+		annotation SummarizationSetBy = User
+
+	column payment_type
+		dataType: string
+		lineageTag: 7b4e362d-2241-4d4a-8526-26f7cfe510a7
+		summarizeBy: none
+		sourceColumn: payment_type
+
+		annotation SummarizationSetBy = User
+
+	column days_to_sale
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 48cb5be7-5291-4913-b089-3e3378e27a40
+		summarizeBy: none
+		sourceColumn: days_to_sale
+
+		annotation SummarizationSetBy = User
+
+	column days_to_close
+		dataType: double
+		isHidden
+		lineageTag: b94cab37-cd26-4fcd-800b-74703e5e2bbe
+		summarizeBy: none
+		sourceColumn: days_to_close
+
+		annotation SummarizationSetBy = User
+
+	column interaction_count
+		dataType: int64
+		isHidden
+		lineageTag: 8580d1f9-b434-4724-b97e-a17f2b84b427
+		summarizeBy: none
+		sourceColumn: interaction_count
+
+		annotation SummarizationSetBy = User
+
+	column inbound_count
+		dataType: int64
+		isHidden
+		lineageTag: 61d4ea16-8c23-40bc-9a9a-d37f44c3a542
+		summarizeBy: none
+		sourceColumn: inbound_count
+
+		annotation SummarizationSetBy = User
+
+	column showroom_visits
+		dataType: int64
+		isHidden
+		lineageTag: 942fd36f-f1bf-448f-9d5a-dae94a90e1db
+		summarizeBy: none
+		sourceColumn: showroom_visits
+
+		annotation SummarizationSetBy = User
+
+	column whatsapp_count
+		dataType: int64
+		isHidden
+		lineageTag: c43e27d8-2372-4a40-88cd-5819b425c156
+		summarizeBy: none
+		sourceColumn: whatsapp_count
+
+		annotation SummarizationSetBy = User
+
+	column first_interaction_at
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 4196e2a7-b2ad-4f2c-adea-9b05dbb2afa2
+		summarizeBy: none
+		sourceColumn: first_interaction_at
+
+		annotation SummarizationSetBy = User
+
+	column last_interaction_at
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 9e8a9333-a3b9-4d0b-8c0d-4c9d2ca76b90
+		summarizeBy: none
+		sourceColumn: last_interaction_at
+
+		annotation SummarizationSetBy = User
+
+	column lead_age_days
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ff6b6500-be5c-4e8e-b203-42253b9b518b
+		summarizeBy: none
+		sourceColumn: lead_age_days
+
+		annotation SummarizationSetBy = User
+
+	column days_since_last_interaction
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: edd2ba45-5bba-4e39-99ec-219edeedfd34
+		summarizeBy: none
+		sourceColumn: days_since_last_interaction
+
+		annotation SummarizationSetBy = User
+
+	column dq_flag_count
+		dataType: int64
+		isHidden
+		lineageTag: 72147ab5-5ca8-4112-a95b-36c55dcabdaf
+		summarizeBy: none
+		sourceColumn: dq_flag_count
+
+		annotation SummarizationSetBy = User
+
+	column dq_flags
+		dataType: string
+		lineageTag: 061176eb-5163-432a-857d-337ca23584ff
+		summarizeBy: none
+		sourceColumn: dq_flags
+
+		annotation SummarizationSetBy = User
+
+	partition fact_leads = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\fact_leads\fact_leads.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

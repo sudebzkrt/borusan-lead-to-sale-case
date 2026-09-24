@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+  "pageOrder": [
+    "funnel_overview",
+    "dealer_performance",
+    "model_mix",
+    "data_quality"
+  ],
+  "activePageName": "funnel_overview"
+}

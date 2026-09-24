@@ -1,0 +1,6 @@
+/// Folder that holds the gold parquet tables (one sub-folder per table). Change it after opening the project: Transform data > Edit parameters.
+expression DataFolder = "/Users/sude/Desktop/borusan-case/data/gold" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 22b54ea6-b7f4-4003-9388-5d2ef85669e8
+
+	annotation PBI_ResultType = Text
+

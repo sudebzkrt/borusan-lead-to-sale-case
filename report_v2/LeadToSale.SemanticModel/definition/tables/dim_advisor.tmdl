@@ -1,0 +1,47 @@
+table dim_advisor
+	lineageTag: faa0a8e3-5bc4-44d3-82e1-5164363dd8ec
+
+	column advisor_id
+		dataType: string
+		isHidden
+		lineageTag: 00b2eeae-4bbd-4152-9d96-f5ed9d91d999
+		summarizeBy: none
+		sourceColumn: advisor_id
+
+		annotation SummarizationSetBy = User
+
+	column advisor_name
+		dataType: string
+		lineageTag: 3b65dbd2-417a-47ba-b0a3-f019083778b1
+		summarizeBy: none
+		sourceColumn: advisor_name
+
+		annotation SummarizationSetBy = User
+
+	column dealer_id
+		dataType: string
+		isHidden
+		lineageTag: eefade01-bcdb-460d-9ba1-5e49e3538af1
+		summarizeBy: none
+		sourceColumn: dealer_id
+
+		annotation SummarizationSetBy = User
+
+	column dealer_name
+		dataType: string
+		lineageTag: d2d61d70-6047-46e9-aab1-af08398791d3
+		summarizeBy: none
+		sourceColumn: dealer_name
+
+		annotation SummarizationSetBy = User
+
+	partition dim_advisor = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_advisor\dim_advisor.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

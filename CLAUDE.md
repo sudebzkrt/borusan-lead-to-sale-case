@@ -16,11 +16,21 @@ Owner: Sude Bozkurt. Deadline: 2 days from 2026-09-09. Deliverable: repo + slide
 - [x] Lead scorer with point-in-time snapshots, tested — `ai_product/train_lead_scorer.py`
 - [x] Streamlit app, smoke-tested — `ai_product/app.py`
 - [x] DAX measures, model guide, report spec — `semantic_model/`, `report/`
-- [ ] Run notebooks in the Fabric trial workspace (`fabric/fabric_setup_guide.md`)
-- [ ] Build the Data Factory pipeline, run once, screenshot Monitor
-- [ ] Build semantic model + 4 report pages, screenshots into `report/screenshots/`
+- [x] Run notebooks in the Fabric trial workspace (`fabric/fabric_setup_guide.md`) — see `report/screenshots/05_lakehouse_schemas.png`, `06_bronze_output.png`, `07_silver_dq_comparison.png`
+- [ ] Build the Data Factory pipeline, run once, screenshot Monitor — pipeline canvas done (`16a_pipeline_canvas.png`), still missing the Monitor run-view screenshot for the "operational" slide
+- [x] Build semantic model + 4 report pages, screenshots into `report/screenshots/` — `09a`–`09d` (4 report pages + model diagram) plus lakehouse explorer shot
 - [ ] Slides (`docs/presentation_outline.md`)
 - [ ] Rehearse demo; fallback = screenshots + `run_local.sh`
+
+Round 2 (feedback: data model liked; report visuals and slides not; show how the LLM/prompt is used):
+
+- [x] Report v2 — `report_v2/LeadToSale.pbip`, spec `report/report_spec_v2.md`, 37 extra measures `semantic_model/measures_v2_additions.dax`, PNGs `report/screenshots_v2/` (also in `docs/img/`), PDF `report/report_v2_pages.pdf`
+- [x] Prompt package + eval — `ai_product/prompts/`, `ai_product/eval/` (`run_eval.py` reproduces `RESULTS.md`); app has the "Modele ne gönderiliyor?" expander, smoke-tested
+- [x] Slide numbers recomputed from Gold — `docs/build_fact_sheet.py` → `docs/presentation_facts.md`
+- [x] Eval labels: two AI labelling passes against `prompts/signal_extraction.system.md` (first pass in `ai_product/eval/labels_first_pass.csv`, agreement 90–97.5%), 6 disagreements reviewed, second pass is `ref_*`. Say "AI-labelled, reviewed", never "hand-labelled"
+- [ ] Add the 37 measures to the Fabric model and publish report v2 against it; take Fabric screenshots of the 4 pages
+- [x] Report v2 fixed in Fabric (report "LeadToSale v2"): font fallback stacks on 159 visuals, text fixes; page PNGs re-exported with `report_v2/export_pages.py` into `docs/img/page1-4.png`. Never run `fabric_publish.py report` again — the local PBIP predates these fixes; pull the definition from Fabric first
+- [ ] Slides v3 — `docs/build_deck_v3.js` → `docs/presentation_v3.pptx` (20 main + 5 backup, English slides, no speaker notes — talk track is a Word file outside the repo); data story = slides 6–10 (architecture, one lead through the layers, Bronze+Silver rules, Gold, semantic model); charts render in PowerPoint, not Keynote. "40–80" was an Istanbul-branch assumption; use "Istanbul advisors: 40–70 open leads" (Gold: Istanbul 44–66, network median 35) — report text already updated in Fabric
 
 ## How to run locally
 

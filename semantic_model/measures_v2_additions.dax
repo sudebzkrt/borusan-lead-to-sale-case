@@ -1,0 +1,138 @@
+// =====================================================================================
+//  Additional measures for the v2 report (paste into the _Measures table of sm_lead_to_sale)
+//  Everything in measures.dax stays as it is; these are additions only.
+//  Format hints are given as comments. Colour measures return hex strings for conditional formatting.
+// =====================================================================================
+
+// Conversion across the whole network in the current date/brand/source context - the reference line on dealer charts.
+// format: 0.0%
+Network Conversion = CALCULATE ( [Lead-to-Sale Conversion], ALL ( dim_dealer ), ALL ( dim_advisor ) )
+
+// Hex colour for dealer bars and table cells: red = at risk, green = star, grey-blue = on track.
+Dealer Bar Colour = SWITCH ( [Dealer Performance Flag], "At risk", "#D03B3B", "Star", "#0CA30C", "#8DA2BD" )
+
+// Orange for digital sources (web, social, campaign), blue for everything else.
+Source Bar Colour = IF ( SELECTEDVALUE ( dim_lead_source[is_digital] ) = TRUE (), "#EB6834", "#1C5CAB" )
+
+// Orange for error-severity DQ checks, blue for warnings.
+Severity Colour = IF ( MAX ( dq_results[severity] ) = "error", "#EB6834", "#1C5CAB" )
+
+// Leads from web form, social media and campaigns.
+// format: #,0
+Leads Digital = CALCULATE ( [Leads], dim_lead_source[is_digital] = TRUE () )
+
+// Leads from showroom, referral, existing customers and call center.
+// format: #,0
+Leads Non-digital = CALCULATE ( [Leads], dim_lead_source[is_digital] = FALSE () )
+
+// Lead-to-sale conversion of digital leads.
+// format: 0.0%
+Conversion Digital = CALCULATE ( [Lead-to-Sale Conversion], dim_lead_source[is_digital] = TRUE () )
+
+// Lead-to-sale conversion of non-digital leads.
+// format: 0.0%
+Conversion Non-digital = CALCULATE ( [Lead-to-Sale Conversion], dim_lead_source[is_digital] = FALSE () )
+
+// Units sold that are EV or PHEV.
+// format: #,0
+Units Electrified = CALCULATE ( [Units Sold], dim_vehicle[is_electrified] = TRUE () )
+
+// Units sold that are petrol or diesel.
+// format: #,0
+Units Combustion = CALCULATE ( [Units Sold], dim_vehicle[is_electrified] = FALSE () )
+
+// Number of dealers converting below 75% of the network.
+// format: 0
+Dealers At Risk = COUNTROWS ( FILTER ( VALUES ( dim_dealer[dealer_name] ), [Dealer Performance Flag] = "At risk" ) )
+
+// Highest dealer conversion in the current context.
+// format: 0.0%
+Best Dealer Conversion = MAXX ( FILTER ( VALUES ( dim_dealer[dealer_name] ), dim_dealer[dealer_name] <> "Unknown dealer" && [Leads] > 0 ), [Lead-to-Sale Conversion] )
+
+// Name of the best-converting dealer.
+Best Dealer Name =
+VAR _t = TOPN ( 1, FILTER ( VALUES ( dim_dealer[dealer_name] ), dim_dealer[dealer_name] <> "Unknown dealer" && [Leads] > 0 ), [Lead-to-Sale Conversion], DESC )
+RETURN MAXX ( _t, dim_dealer[dealer_name] )
+
+// Revenue in billions of TRY.
+// format: 0.0
+Revenue (bn TRY) = DIVIDE ( [Revenue (TRY)], 1000000000 )
+
+// Average final price per unit, millions of TRY.
+// format: 0.00
+Avg Sale Price (M TRY) = DIVIDE ( [Avg Sale Price (TRY)], 1000000 )
+
+// Open leads with an offer on the table, billions of TRY.
+// format: 0.00
+Pipeline Value (bn TRY) = DIVIDE ( [Pipeline Value (TRY)], 1000000000 )
+
+// Dealers with at least one lead.
+// format: 0
+Dealer Count = CALCULATE ( DISTINCTCOUNT ( fact_leads[dealer_id] ), dim_dealer[dealer_name] <> "Unknown dealer" )
+
+// Advisors with at least one lead.
+// format: 0
+Advisor Count = DISTINCTCOUNT ( fact_leads[advisor_id] )
+
+// Number of checks in the last Silver run.
+// format: 0
+DQ Checks Run = COUNTROWS ( dq_results )
+
+// Error-severity checks defined.
+// format: 0
+DQ Error Checks Defined = CALCULATE ( COUNTROWS ( dq_results ), dq_results[severity] = "error" )
+
+// Date of the last Silver run (date only, so it fits the card; the time is in dq_results[run_ts]).
+DQ Last Run = FORMAT ( MAX ( dq_results[run_ts] ), "d mmm yyyy" )
+
+// Card subtitle.
+Leads With DQ Flags Text = FORMAT ( [Leads With DQ Flags], "#,0" ) & " of " & FORMAT ( [Leads], "#,0" ) & " leads"
+
+// Card subtitle: lead date range in context.
+KPI Sub Leads = FORMAT ( MIN ( fact_leads[created_at] ), "mmm yyyy" ) & " – " & FORMAT ( MAX ( fact_leads[created_at] ), "mmm yyyy" )
+
+// Card subtitle.
+KPI Sub Test Drives = FORMAT ( [Test Drives], "#,0" ) & " test drives"
+
+// Card subtitle.
+KPI Sub Offers = FORMAT ( [Offers Made], "#,0" ) & " offers"
+
+// Card subtitle.
+KPI Sub Conversion = FORMAT ( [Won Leads], "#,0" ) & " won · closed-lead basis " & FORMAT ( [Conversion Rate (Closed)], "0.0%" )
+
+// Card subtitle.
+KPI Sub Revenue = FORMAT ( [Units Sold], "#,0" ) & " units · illustrative list prices"
+
+// Card subtitle.
+KPI Sub Network = FORMAT ( [Dealer Count], "0" ) & " dealers · " & FORMAT ( [Advisor Count], "0" ) & " advisors"
+
+// Card subtitle.
+KPI Sub Response = "SLA (24 h) met " & FORMAT ( [Response SLA Met %], "0%" )
+
+// Card subtitle.
+KPI Sub Stale = FORMAT ( [Stale Open Leads], "#,0" ) & " of " & FORMAT ( [Open Leads], "#,0" ) & " open leads"
+
+// Card subtitle.
+KPI Sub Pipeline = FORMAT ( CALCULATE ( [Open Leads], fact_leads[has_offer] = TRUE () ), "#,0" ) & " open leads with an offer"
+
+// Card subtitle.
+KPI Sub Units = FORMAT ( [Revenue (bn TRY)], "0.0" ) & " bn TRY revenue"
+
+// Card subtitle.
+KPI Sub Error Checks = "of " & FORMAT ( [DQ Error Checks Defined], "0" ) & " error-severity checks"
+
+// Rank of the model by units sold - used as a visual filter (<= 15) instead of a Top N filter.
+// format: 0
+Model Units Rank = RANKX ( ALL ( dim_vehicle[model_label], dim_vehicle[brand] ), [Units Sold], , DESC, DENSE )
+
+// Funnel stage 1 (alias so the funnel visual can carry stage labels).
+// format: #,0
+Funnel Leads = [Leads]
+
+// Funnel stage 2.
+// format: #,0
+Funnel Offers = [Offers Made]
+
+// Funnel stage 3.
+// format: #,0
+Funnel Won = [Won Leads]

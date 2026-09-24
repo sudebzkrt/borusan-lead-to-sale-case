@@ -1,0 +1,391 @@
+table _Measures
+	lineageTag: 15a7c839-5dd1-4322-9b39-870d10e6b603
+
+	measure Leads = COUNTROWS ( fact_leads )
+		formatString: #,0
+		lineageTag: 9061ea47-9c51-4f76-992b-48623fefe331
+
+	measure 'Open Leads' = CALCULATE ( [Leads], fact_leads[is_open] = TRUE () )
+		formatString: #,0
+		lineageTag: 26ddb5d4-fbac-4f7a-b9c0-d70f0d74e947
+
+	measure 'Won Leads' = CALCULATE ( [Leads], fact_leads[is_won] = TRUE () )
+		formatString: #,0
+		lineageTag: b62e6eae-ea32-4056-be02-77678901266b
+
+	measure 'Lost Leads' = CALCULATE ( [Leads], fact_leads[is_lost] = TRUE () )
+		formatString: #,0
+		lineageTag: 93cb1160-e715-4255-8ae7-e51b4ce5a07c
+
+	measure 'Test Drives' = CALCULATE ( [Leads], fact_leads[has_test_drive] = TRUE () )
+		formatString: #,0
+		lineageTag: f282dd27-0ed1-42cf-91b5-05abca649409
+
+	measure 'Offers Made' = CALCULATE ( [Leads], fact_leads[has_offer] = TRUE () )
+		formatString: #,0
+		lineageTag: 5e64d7bd-ca74-4f00-93d4-3b4988f7f5b1
+
+	measure 'Units Sold' = COUNTROWS ( fact_sales )
+		formatString: #,0
+		lineageTag: c1151245-041f-4923-ae6c-7c6f53363047
+
+	measure 'Lead-to-Sale Conversion' = DIVIDE ( [Won Leads], [Leads] )
+		formatString: 0.0%
+		lineageTag: 975eaf17-d0e7-40bd-b369-11618203de77
+
+	measure 'Conversion Rate (Closed)' = DIVIDE ( [Won Leads], [Won Leads] + [Lost Leads] )
+		formatString: 0.0%
+		lineageTag: d2c5bae3-ffb5-41cb-b138-3433e0c2b308
+
+	measure 'Test Drive Rate' = DIVIDE ( [Test Drives], [Leads] )
+		formatString: 0.0%
+		lineageTag: e62cb0a1-a9c3-4f28-a5f5-244394b45020
+
+	measure 'Offer Rate' = DIVIDE ( [Offers Made], [Leads] )
+		formatString: 0.0%
+		lineageTag: 7f2abb3d-6db0-4cb0-88b2-1d742ce70e9c
+
+	measure 'Offer Acceptance Rate' =
+			DIVIDE (
+			CALCULATE ( [Won Leads], fact_leads[has_offer] = TRUE () ),
+			[Offers Made]
+			)
+		formatString: 0.0%
+		lineageTag: 92356c78-6667-4b10-abaf-cf7f3943b0f1
+
+	measure 'Test Drive Conversion' =
+			DIVIDE (
+			CALCULATE ( [Won Leads], fact_leads[has_test_drive] = TRUE () ),
+			[Test Drives]
+			)
+		formatString: 0.0%
+		lineageTag: 6ba06500-9ce8-434b-bb53-f3dab38b6bcb
+
+	measure 'Avg First Response (h)' = AVERAGE ( fact_leads[first_response_hours] )
+		formatString: 0.0
+		lineageTag: c44d09fe-253b-448a-b188-c5c224d6da9a
+
+	measure 'Response SLA Met %' =
+			DIVIDE (
+			CALCULATE ( [Leads], fact_leads[response_within_24h] = TRUE () ),
+			CALCULATE ( [Leads], NOT ISBLANK ( fact_leads[first_response_hours] ) )
+			)
+		formatString: 0.0%
+		lineageTag: 5ccede69-0dd2-429a-9cd1-9f39bd8440b6
+
+	measure 'Avg Days to Sale' = CALCULATE ( AVERAGE ( fact_leads[days_to_sale] ), fact_leads[is_won] = TRUE () )
+		formatString: 0.0
+		lineageTag: f37c826d-5c85-46b4-a739-89fe6dfe0ee7
+
+	measure 'Avg Days to Test Drive' = AVERAGE ( fact_leads[days_to_test_drive] )
+		formatString: 0.0
+		lineageTag: d78bf558-85a9-4c23-af7e-1191746b3aae
+
+	measure 'Stale Open Leads' =
+			CALCULATE (
+			[Leads],
+			fact_leads[is_open] = TRUE (),
+			fact_leads[lead_age_days] > 30,
+			fact_leads[days_since_last_interaction] > 14
+			)
+		formatString: #,0
+		lineageTag: ce9da818-2f84-49fd-b0df-308f568ec7d3
+
+	measure 'Stale Pipeline %' = DIVIDE ( [Stale Open Leads], [Open Leads] )
+		formatString: 0%
+		lineageTag: 37bfffbf-38dd-4bea-a11b-d5adfdb6ec39
+
+	measure 'Revenue (TRY)' = SUM ( fact_sales[final_price_try] )
+		formatString: #,0
+		lineageTag: 2b660a19-90eb-48ba-914f-f12a16491e61
+
+	measure 'Revenue (M TRY)' = DIVIDE ( [Revenue (TRY)], 1000000 )
+		formatString: #,0
+		lineageTag: c7a6ebe8-a751-47ab-9d93-29b385a38d47
+
+	measure 'Avg Sale Price (TRY)' = AVERAGE ( fact_sales[final_price_try] )
+		formatString: #,0
+		lineageTag: bfad7fda-df36-41fd-a9a0-eaf42ee3cc44
+
+	measure 'List Value Sold (TRY)' = SUM ( fact_sales[list_price_try] )
+		formatString: #,0
+		lineageTag: 423f9e75-cccf-4739-bcb1-6feffaa5c19f
+
+	measure 'Discount Given (TRY)' = SUM ( fact_sales[discount_try] )
+		formatString: #,0
+		lineageTag: ff63f0a6-eb83-4032-886b-9f0ddde051b7
+
+	measure 'Realised Discount %' = DIVIDE ( [Discount Given (TRY)], [List Value Sold (TRY)] )
+		formatString: 0.0%
+		lineageTag: 9baa60b8-da44-43d2-914e-c546d7da6dbb
+
+	measure 'Avg Offer Discount %' = DIVIDE ( AVERAGE ( fact_offers[discount_pct] ), 100 )
+		formatString: 0.0%
+		lineageTag: 5a3043ea-823e-4bdd-9b2f-bcee2e4d5efe
+
+	measure 'Financing Share' =
+			DIVIDE (
+			CALCULATE ( [Units Sold], fact_sales[payment_type] = "financing" ),
+			[Units Sold]
+			)
+		formatString: 0%
+		lineageTag: 272799d7-89f8-4ad6-8998-c017bfe38e13
+
+	measure 'Pipeline Value (TRY)' = CALCULATE ( SUM ( fact_leads[offer_final_price_try] ), fact_leads[is_open] = TRUE (), fact_leads[has_offer] = TRUE () )
+		formatString: #,0
+		lineageTag: f9ccab43-59e2-43e3-a76e-55bbe0b2e8a8
+
+	measure 'Leads PY' = CALCULATE ( [Leads], SAMEPERIODLASTYEAR ( dim_date[date] ) )
+		formatString: #,0
+		lineageTag: a606b5e4-b581-4aa0-a481-3351a4bd0c97
+
+	measure 'Leads YoY %' = DIVIDE ( [Leads] - [Leads PY], [Leads PY] )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 2ecd5970-a0e1-4e9b-92e4-ccf8e2defe4c
+
+	measure 'Revenue PY' = CALCULATE ( [Revenue (TRY)], SAMEPERIODLASTYEAR ( dim_date[date] ) )
+		lineageTag: 61119ecb-c0d7-4e78-b93a-c0363b987c62
+
+	measure 'Revenue YoY %' = DIVIDE ( [Revenue (TRY)] - [Revenue PY], [Revenue PY] )
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: acca1ec1-0e43-44b2-9359-c214e66e8c0b
+
+	measure 'Conversion 3M Rolling' =
+			VAR _end = MAX ( dim_date[date] )
+			VAR _start = EDATE ( _end, -3 ) + 1
+			RETURN
+			CALCULATE ( [Lead-to-Sale Conversion], DATESBETWEEN ( dim_date[date], _start, _end ) )
+		formatString: 0.0%
+		lineageTag: 81ff9d61-3b23-4f66-b786-fb6e0fb5ca1c
+
+	measure 'Dealer Conversion Rank' =
+			IF (
+			HASONEVALUE ( dim_dealer[dealer_name] ) && [Leads] > 0 && SELECTEDVALUE ( dim_dealer[dealer_name] ) <> "Unknown dealer",
+			RANKX (
+			FILTER ( ALL ( dim_dealer[dealer_name] ), [Leads] > 0 && dim_dealer[dealer_name] <> "Unknown dealer" ),
+			[Lead-to-Sale Conversion], , DESC, DENSE
+			)
+			)
+		formatString: 0
+		lineageTag: 2ea5f363-bcc7-4466-8625-46e85126072e
+
+	measure 'Dealer Performance Flag' =
+			IF ( NOT HASONEVALUE ( dim_dealer[dealer_name] ), BLANK (),
+			VAR _dealer = [Lead-to-Sale Conversion]
+			VAR _network = CALCULATE ( [Lead-to-Sale Conversion], ALL ( dim_dealer ) )
+			RETURN
+			SWITCH ( TRUE (), ISBLANK ( _dealer ), "n/a", _dealer < 0.75 * _network, "At risk", _dealer > 1.25 * _network, "Star", "On track" ) )
+		lineageTag: 3b55a679-2e2f-42d5-840f-ccbc8557ec1f
+
+	measure 'Lost Reason Share' = DIVIDE ( [Lost Leads], CALCULATE ( [Lost Leads], ALL ( fact_leads[lost_reason] ) ) )
+		formatString: 0.0%
+		lineageTag: d93273c5-f090-45c7-bd80-52fbc5141cfa
+
+	measure 'DQ Failed Rows' = SUM ( dq_results[failed_rows] )
+		formatString: #,0
+		lineageTag: cc7f2a04-5fe3-4a08-bef4-b8aeef53959f
+
+	measure 'DQ Error Checks' = CALCULATE ( COUNTROWS ( dq_results ), dq_results[severity] = "error", dq_results[failed_rows] > 0 )
+		formatString: #,0
+		lineageTag: 44b7839e-3b03-4ede-a5ce-798e86bb8f67
+
+	measure 'DQ Failed %' = DIVIDE ( SUM ( dq_results[failed_rows] ), SUM ( dq_results[total_rows] ) )
+		formatString: 0.00%
+		lineageTag: 92fe497b-f801-4e65-b017-eab6a156237c
+
+	measure 'Leads With DQ Flags' = CALCULATE ( [Leads], fact_leads[dq_flag_count] > 0 )
+		lineageTag: 2f734fea-a3dc-46d4-92f1-3189ccc14b77
+
+	measure 'Leads With DQ Flags %' = DIVIDE ( [Leads With DQ Flags], [Leads] )
+		formatString: 0.0%
+		lineageTag: 4840c453-00ec-4f9c-9a3e-6f9846b880b5
+
+	/// Conversion across the whole network in the current date/brand/source context - the reference line on dealer charts.
+	measure 'Network Conversion' = CALCULATE ( [Lead-to-Sale Conversion], ALL ( dim_dealer ), ALL ( dim_advisor ) )
+		formatString: 0.0%
+		lineageTag: 225ac041-bc72-4a64-a052-701f72223c10
+
+	/// Hex colour for dealer bars and table cells: red = at risk, green = star, grey-blue = on track.
+	measure 'Dealer Bar Colour' = SWITCH ( [Dealer Performance Flag], "At risk", "#D03B3B", "Star", "#0CA30C", "#8DA2BD" )
+		lineageTag: 598f4b6a-2107-459d-b210-f7d7001af5d0
+
+	/// Orange for digital sources (web, social, campaign), blue for everything else.
+	measure 'Source Bar Colour' = IF ( SELECTEDVALUE ( dim_lead_source[is_digital] ) = TRUE (), "#EB6834", "#1C5CAB" )
+		lineageTag: 9ae87a6a-5764-4e00-b69d-748b642e0317
+
+	/// Orange for error-severity DQ checks, blue for warnings.
+	measure 'Severity Colour' = IF ( MAX ( dq_results[severity] ) = "error", "#EB6834", "#1C5CAB" )
+		lineageTag: 07b7ee72-6d9e-43e2-9dac-dd46c2ea8cff
+
+	/// Leads from web form, social media and campaigns.
+	measure 'Leads Digital' = CALCULATE ( [Leads], dim_lead_source[is_digital] = TRUE () )
+		formatString: #,0
+		lineageTag: edcb397d-3d95-42ac-8a00-f712dfc40d20
+
+	/// Leads from showroom, referral, existing customers and call center.
+	measure 'Leads Non-digital' = CALCULATE ( [Leads], dim_lead_source[is_digital] = FALSE () )
+		formatString: #,0
+		lineageTag: 301e11a4-2e90-4b4b-b877-8871ef4659c4
+
+	/// Lead-to-sale conversion of digital leads.
+	measure 'Conversion Digital' = CALCULATE ( [Lead-to-Sale Conversion], dim_lead_source[is_digital] = TRUE () )
+		formatString: 0.0%
+		lineageTag: ade8295f-d46c-4e76-99a2-bf5781d6582d
+
+	/// Lead-to-sale conversion of non-digital leads.
+	measure 'Conversion Non-digital' = CALCULATE ( [Lead-to-Sale Conversion], dim_lead_source[is_digital] = FALSE () )
+		formatString: 0.0%
+		lineageTag: 1b9dd0f6-af59-4ab7-b9ff-8818e815918a
+
+	/// Units sold that are EV or PHEV.
+	measure 'Units Electrified' = CALCULATE ( [Units Sold], dim_vehicle[is_electrified] = TRUE () )
+		formatString: #,0
+		lineageTag: e2e8995c-5698-4636-854c-5ee7245650ea
+
+	/// Units sold that are petrol or diesel.
+	measure 'Units Combustion' = CALCULATE ( [Units Sold], dim_vehicle[is_electrified] = FALSE () )
+		formatString: #,0
+		lineageTag: 837e15ee-d3ca-49ad-816e-765ffae92b48
+
+	/// Number of dealers converting below 75% of the network.
+	measure 'Dealers At Risk' = COUNTROWS ( FILTER ( VALUES ( dim_dealer[dealer_name] ), [Dealer Performance Flag] = "At risk" ) )
+		formatString: 0
+		lineageTag: eb018988-7740-451d-b012-d3f5850cfa48
+
+	/// Highest dealer conversion in the current context.
+	measure 'Best Dealer Conversion' = MAXX ( FILTER ( VALUES ( dim_dealer[dealer_name] ), dim_dealer[dealer_name] <> "Unknown dealer" && [Leads] > 0 ), [Lead-to-Sale Conversion] )
+		formatString: 0.0%
+		lineageTag: 8b0423f1-7223-474c-a1b8-8c60b4326ace
+
+	/// Name of the best-converting dealer.
+	measure 'Best Dealer Name' =
+			VAR _t = TOPN ( 1, FILTER ( VALUES ( dim_dealer[dealer_name] ), dim_dealer[dealer_name] <> "Unknown dealer" && [Leads] > 0 ), [Lead-to-Sale Conversion], DESC )
+			RETURN MAXX ( _t, dim_dealer[dealer_name] )
+		lineageTag: 922ed1a3-7c69-49a5-be00-09bce9bdc5d9
+
+	/// Revenue in billions of TRY.
+	measure 'Revenue (bn TRY)' = DIVIDE ( [Revenue (TRY)], 1000000000 )
+		formatString: 0.0
+		lineageTag: 2c52d117-9cc7-4ac5-b451-a4767091879e
+
+	/// Average final price per unit, millions of TRY.
+	measure 'Avg Sale Price (M TRY)' = DIVIDE ( [Avg Sale Price (TRY)], 1000000 )
+		formatString: 0.00
+		lineageTag: 1002db74-84f9-4214-a65f-c28f7ad68286
+
+	/// Open leads with an offer on the table, billions of TRY.
+	measure 'Pipeline Value (bn TRY)' = DIVIDE ( [Pipeline Value (TRY)], 1000000000 )
+		formatString: 0.00
+		lineageTag: 188f683c-d08b-46f8-b8a5-a2dbf90cc515
+
+	/// Dealers with at least one lead.
+	measure 'Dealer Count' = CALCULATE ( DISTINCTCOUNT ( fact_leads[dealer_id] ), dim_dealer[dealer_name] <> "Unknown dealer" )
+		formatString: 0
+		lineageTag: 3fda8d58-9352-4554-be5f-199d331f4bfa
+
+	/// Advisors with at least one lead.
+	measure 'Advisor Count' = DISTINCTCOUNT ( fact_leads[advisor_id] )
+		formatString: 0
+		lineageTag: e2a8753c-9bfb-48af-8b27-7bc665637738
+
+	/// Number of checks in the last Silver run.
+	measure 'DQ Checks Run' = COUNTROWS ( dq_results )
+		formatString: 0
+		lineageTag: 21406b93-200d-4136-85b6-c8856f072d11
+
+	/// Error-severity checks defined.
+	measure 'DQ Error Checks Defined' = CALCULATE ( COUNTROWS ( dq_results ), dq_results[severity] = "error" )
+		formatString: 0
+		lineageTag: 69335848-9133-4359-b11b-acf52afab93b
+
+	/// Timestamp of the last Silver run.
+	measure 'DQ Last Run' = FORMAT ( MAX ( dq_results[run_ts] ), "d mmm yyyy" )
+		lineageTag: a98716ca-6c90-420a-9e71-fe91625e423f
+
+	/// Card subtitle.
+	measure 'Leads With DQ Flags Text' = FORMAT ( [Leads With DQ Flags], "#,0" ) & " of " & FORMAT ( [Leads], "#,0" ) & " leads"
+		lineageTag: ae49d616-c092-4d66-97f0-db0a3dc38ada
+
+	/// Card subtitle: lead date range in context.
+	measure 'KPI Sub Leads' = FORMAT ( MIN ( fact_leads[created_at] ), "mmm yyyy" ) & " – " & FORMAT ( MAX ( fact_leads[created_at] ), "mmm yyyy" )
+		lineageTag: a7aa87f9-7216-47ce-a879-d1a8a2905635
+
+	/// Card subtitle.
+	measure 'KPI Sub Test Drives' = FORMAT ( [Test Drives], "#,0" ) & " test drives"
+		lineageTag: 0af58b77-3877-4bb5-bcca-402b69551e39
+
+	/// Card subtitle.
+	measure 'KPI Sub Offers' = FORMAT ( [Offers Made], "#,0" ) & " offers"
+		lineageTag: 1c5112a9-f28c-443e-b607-87feee836e72
+
+	/// Card subtitle.
+	measure 'KPI Sub Conversion' = FORMAT ( [Won Leads], "#,0" ) & " won · closed-lead basis " & FORMAT ( [Conversion Rate (Closed)], "0.0%" )
+		lineageTag: bdb50c91-734e-4421-b4d8-d06baa60c715
+
+	/// Card subtitle.
+	measure 'KPI Sub Revenue' = FORMAT ( [Units Sold], "#,0" ) & " units · illustrative list prices"
+		lineageTag: d88e12ad-629b-4b4d-8ba8-2dd53446591b
+
+	/// Card subtitle.
+	measure 'KPI Sub Network' = FORMAT ( [Dealer Count], "0" ) & " dealers · " & FORMAT ( [Advisor Count], "0" ) & " advisors"
+		lineageTag: 075aeb31-42f9-42e0-8bca-313c8db5744e
+
+	/// Card subtitle.
+	measure 'KPI Sub Response' = "SLA (24 h) met " & FORMAT ( [Response SLA Met %], "0%" )
+		lineageTag: 63c6029c-3a41-4b3d-a64f-26fc819c735a
+
+	/// Card subtitle.
+	measure 'KPI Sub Stale' = FORMAT ( [Stale Open Leads], "#,0" ) & " of " & FORMAT ( [Open Leads], "#,0" ) & " open leads"
+		lineageTag: cde4c42b-61aa-44be-8823-bc50cd916be4
+
+	/// Card subtitle.
+	measure 'KPI Sub Pipeline' = FORMAT ( CALCULATE ( [Open Leads], fact_leads[has_offer] = TRUE () ), "#,0" ) & " open leads with an offer"
+		lineageTag: 36885c9d-162d-46f2-bade-f675bfffe883
+
+	/// Card subtitle.
+	measure 'KPI Sub Units' = FORMAT ( [Revenue (bn TRY)], "0.0" ) & " bn TRY revenue"
+		lineageTag: 510ecc48-22e6-4acb-bcfa-c1f488160fee
+
+	/// Card subtitle.
+	measure 'KPI Sub Error Checks' = "of " & FORMAT ( [DQ Error Checks Defined], "0" ) & " error-severity checks"
+		lineageTag: 85d634fc-7f78-46bd-a1d7-ea7102390af9
+
+	/// Rank of the model by units sold - used as a visual filter (<= 15) instead of a Top N filter.
+	measure 'Model Units Rank' = RANKX ( ALL ( dim_vehicle[model_label], dim_vehicle[brand] ), [Units Sold], , DESC, DENSE )
+		formatString: 0
+		lineageTag: 8d06846b-df27-44d7-adf0-1669aeec12e4
+
+	/// Funnel stage 1 (alias so the funnel visual can carry stage labels).
+	measure 'Funnel Leads' = [Leads]
+		formatString: #,0
+		lineageTag: 8a0dfa82-2465-4bd4-82d4-1b3e59690d9d
+
+	/// Funnel stage 2.
+	measure 'Funnel Offers' = [Offers Made]
+		formatString: #,0
+		lineageTag: 2e6b7483-dafe-45b9-bd4b-825619894fbc
+
+	/// Funnel stage 3.
+	measure 'Funnel Won' = [Won Leads]
+		formatString: #,0
+		lineageTag: 7fd615d4-6fb6-487f-8db8-f08e4592ea63
+
+	column x
+		dataType: int64
+		isHidden
+		lineageTag: ff102c07-4a57-45de-ba0d-0472149967cf
+		summarizeBy: none
+		sourceColumn: x
+
+		annotation SummarizationSetBy = User
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [x = Int64.Type], {{1}})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

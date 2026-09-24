@@ -1,0 +1,154 @@
+lead_id,status,has_offer,has_test_drive,notes_text,ref_intent,ref_main_objection,ref_went_quiet,ref_buying_signal,rules_intent,rules_main_objection,rules_went_quiet,rules_buying_signal
+L0004064,lost,True,False,"2026-01-28 [email] Müşteri MINI Aceman ile ilgileniyor, E Favoured donanımı soruldu. Fiyat bilgisi verildi, düşünecek.
+2026-02-12 [showroom_visit] Alımı ileri bir tarihe erteledi, 6 ay sonra tekrar aranacak.",low,timing,0,0,low,timing,0,0
+L0013099,test_drive,False,True,"2026-08-17 [showroom_visit] Cevap yok, sesli mesaj bırakıldı. Land Rover Range Rover Evoque ilgisi web formundan.
+2026-08-19 [phone] Finansman için evrak listesi gönderildi. 48 ay vade seçeneğini soruyor.
+2026-08-21 [whatsapp] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2026-08-22 [phone] Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2026-08-24 [showroom_visit] Showroom ziyareti. Müşteri geri dönüş yaptı, P300e Dynamic HSE yerine daha üst donanımı düşünüyor. Yeni fiyat çalışılacak.
+2026-08-29 [phone] Müşteri geri dönüş yaptı, P300e Dynamic HSE yerine daha üst donanımı düşünüyor. Yeni fiyat çalışılacak.",medium,none,0,0,low,timing,0,0
+L0011343,test_drive,False,True,"2025-12-05 [showroom_visit] Cevap yok, sesli mesaj bırakıldı. BMW 3 Serisi ilgisi web formundan.
+2026-01-22 [whatsapp] Şirket aracı olarak alınacak, kurumsal filo fiyatı talep edildi. Filo ekibiyle görüşülecek.
+2026-05-01 [showroom_visit] Showroom ziyareti. Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2026-07-10 [whatsapp] Müşteri acele etmiyor, yıl sonu kampanyalarını beklemek istiyor.",low,timing,0,0,low,timing,0,0
+L0004320,contacted,False,False,"2026-08-12 [phone] Müşteri aradı, Land Rover Range Rover Sport P460e Autobiography için kampanya var mı diye sordu. Güncel liste paylaşıldı.
+2026-08-17 [sms] Test sürüşü için tekrar arandı, bu hafta zamanı yok. Haftaya tekrar aranacak.
+2026-08-21 [showroom_visit] Fiyat konusunda tereddütlü. Finansman seçenekleri anlatıldı, hesaplama gönderilecek.
+2026-08-29 [whatsapp] Müşteri acele etmiyor, yıl sonu kampanyalarını beklemek istiyor.",low,timing,0,0,low,timing,0,0
+L0010996,won,True,False,"2025-10-06 [showroom_visit] Ulaşıldı. BMW 1 Serisi için showroom randevusu teklif edildi, uygun günü bildirecek.
+2025-10-06 [whatsapp] Teklif iletildi, %10 iskonto ile. Müşteri eşiyle değerlendirecek.
+2025-10-07 [whatsapp] Satış tamamlandı. Müşteri memnun, referans olabileceğini söyledi.",high,none,0,1,low,none,0,0
+L0001311,test_drive,False,True,"2026-08-03 [whatsapp] Mevcut aracını takasa vermek istiyor, BMW X5 için değerleme talep etti.
+2026-08-08 [phone] Test sürüşü sonrası görüşüldü, araçtan memnun kaldı. Renk ve donanım netleşti.",high,none,0,1,high,none,0,1
+L0005608,won,True,True,"2026-03-06 [whatsapp] Cevap yok, sesli mesaj bırakıldı. BMW X3 ilgisi web formundan.
+2026-03-10 [showroom_visit] Müşteri teklifi rakip bayi ile karşılaştırıyor, daha iyi fiyat bekliyor.
+2026-03-12 [showroom_visit] Müşteri acele etmiyor, yıl sonu kampanyalarını beklemek istiyor.
+2026-03-16 [whatsapp] Test sürüşü sonrası görüşüldü, araçtan memnun kaldı. Renk ve donanım netleşti.
+2026-03-16 [whatsapp] Satış tamamlandı. Müşteri memnun, referans olabileceğini söyledi.",high,none,0,1,high,none,0,1
+L0001313,lost,False,False,"2025-10-04 [sms] Cevap yok, sesli mesaj bırakıldı. Land Rover Range Rover Evoque ilgisi web formundan.
+2025-10-08 [whatsapp] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2025-10-13 [whatsapp] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2025-10-15 [phone] Rakip markadan araç almış, konuyu kapattık.",low,competitor,0,0,low,competitor,0,0
+L0002182,offer,True,False,"2026-08-26 [whatsapp] Müşteri BMW 5 Serisi ile ilgileniyor, 530e xDrive donanımı soruldu. Fiyat bilgisi verildi, düşünecek.
+2026-08-29 [phone] Test sürüşü için tekrar arandı, bu hafta zamanı yok. Haftaya tekrar aranacak.",low,timing,0,0,low,timing,0,0
+L0011791,lost,True,False,"2026-07-24 [phone] BMW iX için bilgi talebi. Stok durumu ve teslim süresi soruldu. Katalog paylaşıldı.
+2026-07-27 [phone] Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2026-07-31 [email] Şirket aracı olarak alınacak, kurumsal filo fiyatı talep edildi. Filo ekibiyle görüşülecek.
+2026-08-03 [phone] Müşteri geri dönüş yaptı, xDrive45 yerine daha üst donanımı düşünüyor. Yeni fiyat çalışılacak.
+2026-08-05 [phone] 3 kez arandı, ulaşılamadı. Kayıt kapatıldı.",low,none,1,0,low,timing,1,0
+L0010086,offer,True,False,"2026-08-22 [sms] İlk temas. Müşteri BMW iX1 ve rakip modelleri karşılaştırıyor, en geç ay sonuna karar verecek.
+2026-08-27 [whatsapp] Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2026-08-28 [whatsapp] Müşteri geri dönüş yaptı, xDrive30 M Sport yerine daha üst donanımı düşünüyor. Yeni fiyat çalışılacak.
+2026-08-29 [whatsapp] Şirket aracı olarak alınacak, kurumsal filo fiyatı talep edildi. Filo ekibiyle görüşülecek.",medium,none,0,0,low,timing,0,0
+L0005431,offer,True,True,"2026-08-24 [whatsapp] Ulaşıldı. Land Rover Discovery Sport için showroom randevusu teklif edildi, uygun günü bildirecek.
+2026-08-28 [email] Müşteri geri dönüş yaptı, D200 Dynamic SE yerine daha üst donanımı düşünüyor. Yeni fiyat çalışılacak.
+2026-08-31 [phone] Müşteri teklifi rakip bayi ile karşılaştırıyor, daha iyi fiyat bekliyor.",medium,price,0,0,medium,price,0,0
+L0002915,lost,True,True,"2025-07-24 [whatsapp] İlk temas. Müşteri BMW 2 Serisi Gran Coupe ve rakip modelleri karşılaştırıyor, en geç ay sonuna karar verecek.
+2025-07-30 [email] Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2025-08-02 [phone] Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2025-08-04 [whatsapp] İstediği donanım/renk için teslim süresi uzun, beklemek istemedi.",low,stock,0,0,low,stock,0,0
+L0008678,lost,True,False,"2025-11-18 [whatsapp] Ulaşıldı. MINI Countryman için showroom randevusu teklif edildi, uygun günü bildirecek.
+2025-11-24 [whatsapp] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2025-12-15 [whatsapp] Şirket aracı olarak alınacak, kurumsal filo fiyatı talep edildi. Filo ekibiyle görüşülecek.
+2025-12-22 [email] Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2025-12-24 [whatsapp] Kredi onayı çıkmadı, alım ertelendi.",low,financing,0,0,low,financing,0,0
+L0001548,won,True,True,"2026-01-19 [showroom_visit] Cevap yok, sesli mesaj bırakıldı. BMW iX1 ilgisi web formundan.
+2026-01-31 [whatsapp] Şirket aracı olarak alınacak, kurumsal filo fiyatı talep edildi. Filo ekibiyle görüşülecek.
+2026-02-02 [phone] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2026-02-04 [whatsapp] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2026-02-06 [phone] Sözleşme imzalandı, kapora alındı. Teslimat planlandı. BMW iX1 eDrive20 M Sport.",high,none,0,1,high,none,0,1
+L0003328,lost,True,False,"2025-06-26 [email] Ulaşıldı. BMW X7 için showroom randevusu teklif edildi, uygun günü bildirecek.
+2025-07-23 [whatsapp] Kredi onayı çıkmadı, alım ertelendi.",low,financing,0,0,low,financing,0,0
+L0005247,lost,False,True,"2026-02-13 [whatsapp] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2026-02-16 [phone] 3 kez arandı, ulaşılamadı. Kayıt kapatıldı.",low,none,1,0,low,none,1,0
+L0006228,lost,False,True,"2025-07-26 [whatsapp] Ulaşıldı. BMW iX1 için showroom randevusu teklif edildi, uygun günü bildirecek.
+2025-08-16 [phone] Müşteri geri dönüş yaptı, xDrive30 M Sport yerine daha üst donanımı düşünüyor. Yeni fiyat çalışılacak.
+2025-08-19 [showroom_visit] Showroom ziyareti. Müşteri teklifi rakip bayi ile karşılaştırıyor, daha iyi fiyat bekliyor.
+2025-08-25 [email] Müşteri teklifi rakip bayi ile karşılaştırıyor, daha iyi fiyat bekliyor.
+2025-09-06 [email] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2025-09-08 [email] 3 kez arandı, ulaşılamadı. Kayıt kapatıldı.",low,none,1,0,low,price,1,0
+L0002457,contacted,False,False,"2024-11-12 [phone] Müşteri BMW X3 ile ilgileniyor, xDrive30e M Sport donanımı soruldu. Fiyat bilgisi verildi, düşünecek.
+2025-03-17 [email] Şirket aracı olarak alınacak, kurumsal filo fiyatı talep edildi. Filo ekibiyle görüşülecek.
+2025-05-13 [phone] Stokta istediği renk yok, 6-8 hafta teslim süresi söylendi. Alternatif renk önerildi.
+2026-08-05 [phone] Fiyat konusunda tereddütlü. Finansman seçenekleri anlatıldı, hesaplama gönderilecek.",medium,price,0,0,medium,price,0,0
+L0001109,offer,True,False,"2026-08-24 [showroom_visit] Müşteri aradı, BMW X3 xDrive20d M Sport için kampanya var mı diye sordu. Güncel liste paylaşıldı.
+2026-08-27 [showroom_visit] Showroom ziyareti. Müşteri acele etmiyor, yıl sonu kampanyalarını beklemek istiyor.",low,timing,0,0,low,timing,0,0
+L0002765,lost,True,False,"2026-02-24 [phone] MINI Countryman için bilgi talebi. Stok durumu ve teslim süresi soruldu. Katalog paylaşıldı.
+2026-03-09 [email] Müşteri geri dönüş yaptı, C Favoured yerine daha üst donanımı düşünüyor. Yeni fiyat çalışılacak.
+2026-03-13 [showroom_visit] Müşteri acele etmiyor, yıl sonu kampanyalarını beklemek istiyor.
+2026-03-19 [whatsapp] Müşteri teklifi rakip bayi ile karşılaştırıyor, daha iyi fiyat bekliyor.
+2026-03-19 [whatsapp] Stokta istediği renk yok, 6-8 hafta teslim süresi söylendi. Alternatif renk önerildi.
+2026-03-23 [showroom_visit] Fiyatı yüksek buldu, bütçesini aşıyor. Şimdilik vazgeçti.",low,price,0,0,low,timing,0,0
+L0010493,lost,False,False,"2025-09-01 [phone] Ulaşıldı. BMW iX3 için showroom randevusu teklif edildi, uygun günü bildirecek.
+2025-09-03 [showroom_visit] Showroom ziyareti. Müşteri teklifi rakip bayi ile karşılaştırıyor, daha iyi fiyat bekliyor.
+2025-09-04 [sms] Alımı ileri bir tarihe erteledi, 6 ay sonra tekrar aranacak.",low,timing,0,0,low,timing,0,0
+L0003718,lost,True,False,"2025-07-07 [phone] Müşteri BMW X2 ile ilgileniyor, sDrive20i M Sport donanımı soruldu. Fiyat bilgisi verildi, düşünecek.
+2025-07-18 [whatsapp] Kredi onayı çıkmadı, alım ertelendi.",low,financing,0,0,low,financing,0,0
+L0014845,won,True,True,"2026-04-10 [whatsapp] Ulaşıldı. BMW 3 Serisi için showroom randevusu teklif edildi, uygun günü bildirecek.
+2026-04-25 [showroom_visit] Müşteri teklifi kabul etti, ödeme planı onaylandı. Plaka ve sigorta işlemleri başlatıldı.",high,none,0,1,high,none,0,1
+L0001738,lost,False,True,"2025-09-27 [sms] İlk temas. Müşteri BMW X2 ve rakip modelleri karşılaştırıyor, en geç ay sonuna karar verecek.
+2025-10-01 [whatsapp] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2025-10-06 [whatsapp] Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2025-10-10 [sms] Mesajlara dönüş yapmıyor, kapatıldı.",low,none,1,0,low,timing,1,0
+L0001878,contacted,False,False,"2026-04-27 [whatsapp] BMW iX1 için bilgi talebi. Stok durumu ve teslim süresi soruldu. Katalog paylaşıldı.
+2026-06-10 [email] Müşteri teklifi rakip bayi ile karşılaştırıyor, daha iyi fiyat bekliyor.
+2026-07-11 [whatsapp] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2026-07-13 [email] Şirket aracı olarak alınacak, kurumsal filo fiyatı talep edildi. Filo ekibiyle görüşülecek.",medium,price,0,0,medium,price,0,0
+L0010802,won,True,True,"2026-07-17 [phone] Ulaşıldı. BMW iX3 için showroom randevusu teklif edildi, uygun günü bildirecek.
+2026-07-20 [phone] Şirket aracı olarak alınacak, kurumsal filo fiyatı talep edildi. Filo ekibiyle görüşülecek.
+2026-07-23 [phone] Test sürüşü sonrası görüşüldü, araçtan memnun kaldı. Renk ve donanım netleşti.
+2026-07-27 [phone] Teklif iletildi, %6 iskonto ile. Müşteri eşiyle değerlendirecek.
+2026-07-28 [phone] Satış tamamlandı. Müşteri memnun, referans olabileceğini söyledi.",high,none,0,1,high,none,0,1
+L0008186,lost,False,False,"2026-07-14 [showroom_visit] Cevap yok, sesli mesaj bırakıldı. BMW iX3 ilgisi web formundan.
+2026-07-27 [whatsapp] Şirket aracı olarak alınacak, kurumsal filo fiyatı talep edildi. Filo ekibiyle görüşülecek.
+2026-08-01 [phone] Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2026-08-04 [email] Alımı ileri bir tarihe erteledi, 6 ay sonra tekrar aranacak.",low,timing,0,0,low,timing,0,0
+L0002384,won,True,True,"2026-07-03 [whatsapp] Müşteri aradı, BMW iX1 xDrive30 M Sport için kampanya var mı diye sordu. Güncel liste paylaşıldı.
+2026-07-06 [phone] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2026-07-11 [whatsapp] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2026-07-13 [showroom_visit] Müşteri teklifi kabul etti, ödeme planı onaylandı. Plaka ve sigorta işlemleri başlatıldı.",high,none,0,1,high,none,0,1
+L0011182,lost,False,True,"2026-07-20 [whatsapp] Ulaşıldı. Land Rover Defender için showroom randevusu teklif edildi, uygun günü bildirecek.
+2026-08-01 [showroom_visit] Showroom ziyareti. Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2026-08-06 [phone] Müşteri teklifi rakip bayi ile karşılaştırıyor, daha iyi fiyat bekliyor.
+2026-08-10 [showroom_visit] Showroom ziyareti. Müşteri acele etmiyor, yıl sonu kampanyalarını beklemek istiyor.
+2026-08-11 [showroom_visit] Alımı ileri bir tarihe erteledi, 6 ay sonra tekrar aranacak.",low,timing,0,0,low,timing,0,0
+L0014395,won,True,True,"2025-11-21 [phone] Müşteri aradı, BMW X3 xDrive20d M Sport için kampanya var mı diye sordu. Güncel liste paylaşıldı.
+2025-12-02 [whatsapp] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2025-12-02 [whatsapp] Müşteri teklifi rakip bayi ile karşılaştırıyor, daha iyi fiyat bekliyor.
+2025-12-04 [showroom_visit] Satış tamamlandı. Müşteri memnun, referans olabileceğini söyledi.",high,none,0,1,medium,price,0,0
+L0001902,won,True,True,"2026-05-20 [phone] Müşteri aradı, MINI Cooper C Classic için kampanya var mı diye sordu. Güncel liste paylaşıldı.
+2026-05-26 [phone] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2026-05-28 [email] Müşteri geri dönüş yaptı, C Classic yerine daha üst donanımı düşünüyor. Yeni fiyat çalışılacak.
+2026-06-04 [email] Müşteri teklifi kabul etti, ödeme planı onaylandı. Plaka ve sigorta işlemleri başlatıldı.",high,none,0,1,high,none,0,1
+L0011350,contacted,False,False,"2026-08-15 [phone] İlk temas. Müşteri BMW 2 Serisi Gran Coupe ve rakip modelleri karşılaştırıyor, en geç ay sonuna karar verecek.
+2026-08-24 [sms] Fiyat konusunda tereddütlü. Finansman seçenekleri anlatıldı, hesaplama gönderilecek.
+2026-08-28 [phone] Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2026-08-28 [whatsapp] Stokta istediği renk yok, 6-8 hafta teslim süresi söylendi. Alternatif renk önerildi.",low,stock,0,0,low,timing,0,0
+L0003095,won,True,True,"2026-06-15 [whatsapp] Müşteri aradı, BMW iX1 eDrive20 M Sport için kampanya var mı diye sordu. Güncel liste paylaşıldı.
+2026-06-25 [email] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2026-06-26 [whatsapp] Test sürüşü sonrası görüşüldü, araçtan memnun kaldı. Renk ve donanım netleşti.
+2026-06-29 [showroom_visit] Satış tamamlandı. Müşteri memnun, referans olabileceğini söyledi.",high,none,0,1,high,none,0,1
+L0009368,contacted,False,False,"2026-06-01 [phone] Ulaşıldı. BMW X1 için showroom randevusu teklif edildi, uygun günü bildirecek.
+2026-06-27 [whatsapp] Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2026-07-09 [phone] Müşteri teklifi rakip bayi ile karşılaştırıyor, daha iyi fiyat bekliyor.
+2026-07-27 [whatsapp] Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.",low,timing,0,0,low,timing,0,0
+L0006060,won,True,False,"2026-04-04 [whatsapp] Mevcut aracını takasa vermek istiyor, Land Rover Range Rover Sport için değerleme talep etti.
+2026-04-09 [showroom_visit] Müşteri acele etmiyor, yıl sonu kampanyalarını beklemek istiyor.
+2026-04-13 [phone] Stokta istediği renk yok, 6-8 hafta teslim süresi söylendi. Alternatif renk önerildi.
+2026-04-15 [whatsapp] Satış tamamlandı. Müşteri memnun, referans olabileceğini söyledi.",high,none,0,1,low,timing,0,0
+L0005044,lost,True,False,"2026-05-27 [sms] Ulaşıldı. MINI Countryman için showroom randevusu teklif edildi, uygun günü bildirecek.
+2026-06-04 [phone] Müşteri teklifi rakip bayi ile karşılaştırıyor, daha iyi fiyat bekliyor.
+2026-06-12 [email] Teklif iletildi, %6 iskonto ile. Müşteri eşiyle değerlendirecek.
+2026-06-27 [phone] Kredi onayı çıkmadı, alım ertelendi.",low,financing,0,0,low,financing,0,0
+L0001371,contacted,False,False,"2025-09-18 [phone] Mevcut aracını takasa vermek istiyor, BMW iX1 için değerleme talep etti.
+2026-06-08 [whatsapp] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.",low,none,1,0,low,none,1,0
+L0008005,test_drive,False,True,"2024-11-18 [phone] Müşteri MINI Cooper ile ilgileniyor, S Favoured donanımı soruldu. Fiyat bilgisi verildi, düşünecek.
+2025-08-19 [sms] Müşteri teklifi rakip bayi ile karşılaştırıyor, daha iyi fiyat bekliyor.
+2025-09-08 [phone] Whatsapp üzerinden görsel ve fiyat listesi paylaşıldı. Okundu, cevap bekleniyor.
+2025-11-29 [whatsapp] Müşteri acele etmiyor, yıl sonu kampanyalarını beklemek istiyor.
+2026-01-24 [whatsapp] Test sürüşü sonrası görüşüldü, araçtan memnun kaldı. Renk ve donanım netleşti.
+2026-08-27 [sms] Finansman için evrak listesi gönderildi. 48 ay vade seçeneğini soruyor.",high,financing,0,1,high,none,0,1
+L0001397,lost,False,False,"2025-11-26 [whatsapp] İlk temas. Müşteri BMW X5 ve rakip modelleri karşılaştırıyor, en geç ay sonuna karar verecek.
+2025-11-27 [phone] Müşteri geri dönüş yaptı, xDrive50e M Sport yerine daha üst donanımı düşünüyor. Yeni fiyat çalışılacak.
+2025-11-28 [phone] Randevu iptal edildi, iş seyahati. Ayın 15'inden sonra tekrar aranacak.
+2025-11-29 [email] Farklı bir segmente yöneldi, ihtiyaç değişti.",low,none,0,0,low,timing,0,0

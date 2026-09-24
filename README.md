@@ -54,9 +54,13 @@ data/raw/              source-system extracts (upload to Lakehouse Files/raw)
 fabric/notebooks/      01_bronze_ingest · 02_silver_clean · 03_gold_star_schema  (.py = source, .ipynb = Fabric import)
 fabric/fabric_setup_guide.md   click-path guide: workspace, lakehouse with schemas, notebooks, pipeline
 semantic_model/        measures.dax (41 commented measures), model_guide.md (relationships, date table, RLS note)
-report/                report_spec.md (4 pages, visual by visual), screenshots/
-ai_product/            Lead Intelligence Assistant: signals.py, train_lead_scorer.py, llm.py, app.py, model/
-docs/                  data_dictionary, dq_injections (ground truth), presentation_outline
+report/                report_spec.md + report_spec_v2.md (4 pages, visual by visual), screenshots/, report_v2_pages.pdf
+report_v2/             round-2 Power BI project (PBIP) + fabric_publish.py / export_pages.py (Fabric REST API, works from a Mac)
+build/                 generators for the PBIP semantic model and report definition
+ai_product/            Lead Intelligence Assistant: signals.py, train_lead_scorer.py, llm.py, app.py, model/,
+                       prompts/ (versioned system prompts + JSON schemas + CHANGELOG), eval/ (40 labelled note threads)
+docs/                  data_dictionary, dq_injections (ground truth), presentation_facts (every slide number from Gold),
+                       build_deck_v3.js (generates the round-2 deck), img/
 ```
 
 ## Part 1 – Medallion on Fabric
@@ -80,6 +84,18 @@ Ranks open leads by conversion probability with per-lead reasons and a suggested
 summary and a drafted customer message. Trained on point-in-time snapshots of closed leads (no outcome leakage),
 validated with a temporal split: AUC 0.82 overall, 0.84 before the offer stage, 3.7× lift in the top decile.
 Details in `ai_product/README.md`.
+
+## Round 2 — what changed after the first interview
+
+Feedback: the data model worked; the report and the presentation did not, and the AI workflow was not visible.
+
+| Area | Change |
+|---|---|
+| Report | Rebuilt as a Power BI project (`report_v2/`): every title states a finding, one accent colour (orange = digital), a real funnel, formatted numbers, synced slicers. Generated from `report/report_spec_v2.md`, published to Fabric through the REST API (`report_v2/fabric_publish.py`), 37 extra measures in `semantic_model/measures_v2_additions.dax`. Page exports in `report/screenshots/10a–10d_*.png`. |
+| AI workflow | Loop used throughout: I specify (what each table/page answers, the rules, the numbers it must match) → AI generates (notebooks, DAX, PBIP, prompts, deck) → I verify (Gold totals = report cards, DQ counts vs ground truth) → AI fixes and publishes. Example: report titles fell back to a serif font on macOS because 159 visuals pinned `Segoe UI` without a fallback; the report definition was patched and re-published via the API. |
+| LLM layer | Prompts are files, not strings (`ai_product/prompts/`), with JSON schemas, validation + one retry + template fallback in `llm.py`, and a changelog. The app shows the exact prompt and payload ("Modele ne gönderiliyor?"). |
+| Measurement | `ai_product/eval/`: 40 note threads labelled by AI in two passes against the written rules (agreement 90–97.5%, 6 disagreements reviewed). Keyword rules: went quiet 100%, buying signal 92.5%, intent 87.5%, main objection 72.5%. `python ai_product/eval/run_eval.py` (`--llm` with an API key adds the LLM column). |
+| Numbers | `python docs/build_fact_sheet.py` recomputes every number used on the slides from Gold into `docs/presentation_facts.md`. |
 
 ## Run everything locally
 

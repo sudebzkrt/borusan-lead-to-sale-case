@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DataFolder", "fact_leads", "fact_sales", "fact_offers", "fact_test_drives", "dim_date", "dim_dealer", "dim_vehicle", "dim_advisor", "dim_customer", "dim_lead_source", "dq_results", "_Measures"]
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table fact_leads
+ref table fact_sales
+ref table fact_offers
+ref table fact_test_drives
+ref table dim_date
+ref table dim_dealer
+ref table dim_vehicle
+ref table dim_advisor
+ref table dim_customer
+ref table dim_lead_source
+ref table dq_results
+ref table _Measures
+
+ref cultureInfo en-US
+

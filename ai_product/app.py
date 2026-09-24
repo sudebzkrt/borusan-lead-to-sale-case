@@ -13,7 +13,7 @@ import streamlit as st
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-from llm import next_best_action, llm_enabled, llm_signals  # noqa: E402
+from llm import next_best_action, llm_enabled, llm_signals, build_payload, load_prompt  # noqa: E402
 
 REPO = os.environ.get("REPO_ROOT", os.path.dirname(HERE))
 GOLD = os.path.join(REPO, "data", "gold")
@@ -155,10 +155,17 @@ elif page == "Lead detayı":
             st.success(f"**Aksiyon:** {out['action']}")
             st.markdown("**Müşteriye taslak mesaj:**")
             st.code(out["draft_message"], language=None)
-            st.caption(f"Üretim modu: {'LLM' if out['mode'] == 'llm' else 'şablon (LLM anahtarı tanımlı değil)'}")
+            st.caption(f"Üretim modu: {'LLM' if out['mode'] == 'llm' else 'şablon (LLM anahtarı tanımlı değil)'}"
+                       + (f" · güven: {out.get('confidence')}" if out.get('mode') == 'llm' else ""))
         if llm_enabled() and st.button("🧠 Notları LLM ile özetle"):
             with st.spinner("Okunuyor…"):
                 st.json(llm_signals(r.notes_text))
+        with st.expander("🔍 Modele ne gönderiliyor? (prompt ve veri)"):
+            st.caption("Sistem promptu `ai_product/prompts/next_best_action.system.md` dosyasından okunur; "
+                       "kullanıcı mesajı aşağıdaki JSON'dur. Sadece beyaz listedeki lead alanları gönderilir, kimlik bilgisi gitmez.")
+            lead_dict = r.to_dict(); lead_dict["vehicle"] = r.trim_label
+            st.json(build_payload(lead_dict, r.notes_text, r.score, r.reasons_list), expanded=False)
+            st.markdown(load_prompt("next_best_action"))
 
 # ------------------------------------------------------------------ page 3
 elif page == "Model kartı":

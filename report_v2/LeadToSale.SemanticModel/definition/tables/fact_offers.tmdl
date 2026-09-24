@@ -1,0 +1,147 @@
+table fact_offers
+	lineageTag: 4a8d9259-1cbe-47c5-9680-8f1132f08c87
+
+	column lead_id
+		dataType: string
+		isHidden
+		lineageTag: 4fec7c96-b755-42e0-a25c-357fefbf76e6
+		summarizeBy: none
+		sourceColumn: lead_id
+
+		annotation SummarizationSetBy = User
+
+	column offer_id
+		dataType: string
+		lineageTag: 876bb418-40c2-4160-a3ed-e3adf86f9851
+		summarizeBy: none
+		sourceColumn: offer_id
+
+		annotation SummarizationSetBy = User
+
+	column vehicle_id
+		dataType: string
+		isHidden
+		lineageTag: f28fc064-3d43-4d2f-98b9-cfe33e7ffc66
+		summarizeBy: none
+		sourceColumn: vehicle_id
+
+		annotation SummarizationSetBy = User
+
+	column dealer_id
+		dataType: string
+		isHidden
+		lineageTag: fd99e39c-3268-46c5-9622-94d2e9c7d655
+		summarizeBy: none
+		sourceColumn: dealer_id
+
+		annotation SummarizationSetBy = User
+
+	column offer_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 35bb642a-aba0-402a-9f8f-ca2ba43c31db
+		summarizeBy: none
+		sourceColumn: offer_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column list_price_try
+		dataType: int64
+		isHidden
+		lineageTag: f44b739f-676a-4b18-945c-56efe1872088
+		summarizeBy: none
+		sourceColumn: list_price_try
+
+		annotation SummarizationSetBy = User
+
+	column financing
+		dataType: boolean
+		lineageTag: c0fc921b-7099-4795-9b73-e4947b2abbbe
+		summarizeBy: none
+		sourceColumn: financing
+
+		annotation SummarizationSetBy = User
+
+	column valid_until
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 8f97b350-5df9-4007-92fc-1adb489c5b0b
+		summarizeBy: none
+		sourceColumn: valid_until
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column offer_status
+		dataType: string
+		lineageTag: 69289f4b-9f55-4f95-aa4b-6c9374383c45
+		summarizeBy: none
+		sourceColumn: offer_status
+
+		annotation SummarizationSetBy = User
+
+	column dq_flags
+		dataType: string
+		lineageTag: b958f732-8f3d-4c04-b9fe-79124f2a0628
+		summarizeBy: none
+		sourceColumn: dq_flags
+
+		annotation SummarizationSetBy = User
+
+	column discount_pct
+		dataType: double
+		isHidden
+		lineageTag: de29805b-b7de-4c86-a1b1-ac8b46ce05f2
+		summarizeBy: none
+		sourceColumn: discount_pct
+
+		annotation SummarizationSetBy = User
+
+	column final_price_try
+		dataType: int64
+		isHidden
+		lineageTag: 34557575-3871-4344-94d5-37efd4207c95
+		summarizeBy: none
+		sourceColumn: final_price_try
+
+		annotation SummarizationSetBy = User
+
+	column offer_date_key
+		dataType: int64
+		isHidden
+		lineageTag: 6dee63ab-ffe3-4e59-beca-6d624a381810
+		summarizeBy: none
+		sourceColumn: offer_date_key
+
+		annotation SummarizationSetBy = User
+
+	column discount_try
+		dataType: int64
+		isHidden
+		lineageTag: 6c7fbfbb-a081-4a7f-b957-2480c22f6962
+		summarizeBy: none
+		sourceColumn: discount_try
+
+		annotation SummarizationSetBy = User
+
+	column is_accepted
+		dataType: boolean
+		lineageTag: 400d0119-fb09-417b-9b0f-0e3fec0f2195
+		summarizeBy: none
+		sourceColumn: is_accepted
+
+		annotation SummarizationSetBy = User
+
+	partition fact_offers = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\fact_offers\fact_offers.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

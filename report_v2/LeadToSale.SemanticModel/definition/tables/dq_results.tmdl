@@ -1,0 +1,79 @@
+table dq_results
+	lineageTag: b81c3c07-a3c3-42d8-8d1b-ae2103eb2ec8
+
+	column check_name
+		dataType: string
+		lineageTag: 74f485a2-3d2e-423b-b19c-c5daf6ed8292
+		summarizeBy: none
+		sourceColumn: check_name
+
+		annotation SummarizationSetBy = User
+
+	column table_name
+		dataType: string
+		lineageTag: 835acfe1-86d4-4348-bdec-57ded2d578ee
+		summarizeBy: none
+		sourceColumn: table_name
+
+		annotation SummarizationSetBy = User
+
+	column failed_rows
+		dataType: int64
+		lineageTag: 59932045-d6a2-4d78-8d93-982192c2ee58
+		summarizeBy: none
+		sourceColumn: failed_rows
+
+		annotation SummarizationSetBy = User
+
+	column total_rows
+		dataType: int64
+		lineageTag: d010fe8d-40c2-4b37-9bb5-90850d614551
+		summarizeBy: none
+		sourceColumn: total_rows
+
+		annotation SummarizationSetBy = User
+
+	column severity
+		dataType: string
+		lineageTag: 85fcb0f1-7beb-4f51-b89d-d7409e760548
+		summarizeBy: none
+		sourceColumn: severity
+
+		annotation SummarizationSetBy = User
+
+	column action
+		dataType: string
+		lineageTag: 6f782633-ddf4-488a-93b4-2482d73e9273
+		summarizeBy: none
+		sourceColumn: action
+
+		annotation SummarizationSetBy = User
+
+	column run_ts
+		dataType: dateTime
+		formatString: yyyy-mm-dd hh:nn
+		lineageTag: e73358f1-86dd-43f3-8e9d-81deb0eed94f
+		summarizeBy: none
+		sourceColumn: run_ts
+
+		annotation SummarizationSetBy = User
+
+	column failed_pct
+		dataType: double
+		formatString: 0.00
+		lineageTag: 5c17f021-4d39-4643-bc15-6841d6459bac
+		summarizeBy: none
+		sourceColumn: failed_pct
+
+		annotation SummarizationSetBy = User
+
+	partition dq_results = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dq_results\dq_results.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

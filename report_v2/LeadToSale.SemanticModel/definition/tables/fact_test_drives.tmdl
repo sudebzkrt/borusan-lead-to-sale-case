@@ -1,0 +1,111 @@
+table fact_test_drives
+	lineageTag: 32b99b6e-d2d9-48fb-8a88-c57e3818b2c9
+
+	column lead_id
+		dataType: string
+		isHidden
+		lineageTag: 241404ce-a325-4158-91a8-0d768543b65d
+		summarizeBy: none
+		sourceColumn: lead_id
+
+		annotation SummarizationSetBy = User
+
+	column test_drive_id
+		dataType: string
+		lineageTag: ed19f55e-3de9-4c1e-9a8b-d01c0b869803
+		summarizeBy: none
+		sourceColumn: test_drive_id
+
+		annotation SummarizationSetBy = User
+
+	column dealer_id
+		dataType: string
+		isHidden
+		lineageTag: 2f5bf3b0-3995-48d1-8305-05bec5228890
+		summarizeBy: none
+		sourceColumn: dealer_id
+
+		annotation SummarizationSetBy = User
+
+	column vehicle_id
+		dataType: string
+		isHidden
+		lineageTag: 71170389-f070-48ea-ad46-f20373d818fa
+		summarizeBy: none
+		sourceColumn: vehicle_id
+
+		annotation SummarizationSetBy = User
+
+	column advisor_id
+		dataType: string
+		isHidden
+		lineageTag: 661da5aa-4f96-4ed4-b8d5-c0c604577c1b
+		summarizeBy: none
+		sourceColumn: advisor_id
+
+		annotation SummarizationSetBy = User
+
+	column scheduled_at
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: fa42480a-8f37-42cf-ab01-0d13de70e2e9
+		summarizeBy: none
+		sourceColumn: scheduled_at
+
+		annotation SummarizationSetBy = User
+
+	column completed
+		dataType: boolean
+		lineageTag: 039acacb-95be-4e1f-ac44-e10cf10e019c
+		summarizeBy: none
+		sourceColumn: completed
+
+		annotation SummarizationSetBy = User
+
+	column duration_min
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: fe242dce-245a-4042-90da-e6a9139e5214
+		summarizeBy: none
+		sourceColumn: duration_min
+
+		annotation SummarizationSetBy = User
+
+	column dq_flags
+		dataType: string
+		lineageTag: 655f1522-c2ad-4ee2-b212-83c36d7bedf3
+		summarizeBy: none
+		sourceColumn: dq_flags
+
+		annotation SummarizationSetBy = User
+
+	column satisfaction_score
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 973e58aa-36f2-44e7-ae6b-e39dbe5abc1c
+		summarizeBy: none
+		sourceColumn: satisfaction_score
+
+		annotation SummarizationSetBy = User
+
+	column scheduled_date_key
+		dataType: int64
+		isHidden
+		lineageTag: 8b989a91-0cda-4d59-81de-b06449c41bce
+		summarizeBy: none
+		sourceColumn: scheduled_date_key
+
+		annotation SummarizationSetBy = User
+
+	partition fact_test_drives = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\fact_test_drives\fact_test_drives.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

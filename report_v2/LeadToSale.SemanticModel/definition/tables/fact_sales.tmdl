@@ -1,0 +1,186 @@
+table fact_sales
+	lineageTag: b0dd3c03-9f71-465f-8777-d641c1420a1d
+
+	column vehicle_id
+		dataType: string
+		isHidden
+		lineageTag: 39a8ebba-5d71-48c4-8999-ec10b6a7397a
+		summarizeBy: none
+		sourceColumn: vehicle_id
+
+		annotation SummarizationSetBy = User
+
+	column lead_id
+		dataType: string
+		isHidden
+		lineageTag: d2a91e00-e994-4af2-b5c5-6cecf264488e
+		summarizeBy: none
+		sourceColumn: lead_id
+
+		annotation SummarizationSetBy = User
+
+	column customer_id
+		dataType: string
+		isHidden
+		lineageTag: 7970ffbe-6a24-493e-98a3-83d8d3e0e2a3
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = User
+
+	column sale_id
+		dataType: string
+		lineageTag: 4023330c-891a-4df8-a80e-99f2c3441920
+		summarizeBy: none
+		sourceColumn: sale_id
+
+		annotation SummarizationSetBy = User
+
+	column dealer_id
+		dataType: string
+		isHidden
+		lineageTag: cc0a28b2-aa9e-447e-808b-7e4cd5fce42f
+		summarizeBy: none
+		sourceColumn: dealer_id
+
+		annotation SummarizationSetBy = User
+
+	column advisor_id
+		dataType: string
+		isHidden
+		lineageTag: 367d8571-092c-48cd-ab96-f61e245b45c2
+		summarizeBy: none
+		sourceColumn: advisor_id
+
+		annotation SummarizationSetBy = User
+
+	column sale_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 855c067f-143e-423b-a1db-5003bc362c92
+		summarizeBy: none
+		sourceColumn: sale_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column delivery_date
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 7a4b382f-3669-4d3a-83a3-572ff3a3189a
+		summarizeBy: none
+		sourceColumn: delivery_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column final_price_try
+		dataType: int64
+		isHidden
+		lineageTag: 161ba4d1-924d-4183-bb9c-f190f3802836
+		summarizeBy: none
+		sourceColumn: final_price_try
+
+		annotation SummarizationSetBy = User
+
+	column payment_type
+		dataType: string
+		lineageTag: 577208c8-dfcd-40bb-9a39-d71c0c6f2d5b
+		summarizeBy: none
+		sourceColumn: payment_type
+
+		annotation SummarizationSetBy = User
+
+	column trade_in_value_try
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 298a7a96-f8d1-4225-8747-b937a556698f
+		summarizeBy: none
+		sourceColumn: trade_in_value_try
+
+		annotation SummarizationSetBy = User
+
+	column vin
+		dataType: string
+		isHidden
+		lineageTag: 236b2984-1578-4864-bef1-ab6563ed605c
+		summarizeBy: none
+		sourceColumn: vin
+
+		annotation SummarizationSetBy = User
+
+	column dq_flags
+		dataType: string
+		lineageTag: 3d60ad1c-a448-4a33-9628-41becb2e9ba0
+		summarizeBy: none
+		sourceColumn: dq_flags
+
+		annotation SummarizationSetBy = User
+
+	column list_price_try
+		dataType: int64
+		isHidden
+		lineageTag: 3a9c81dd-0784-4699-9b71-04526b0d0402
+		summarizeBy: none
+		sourceColumn: list_price_try
+
+		annotation SummarizationSetBy = User
+
+	column sale_date_key
+		dataType: int64
+		isHidden
+		lineageTag: 26c1aa64-3b16-4f4c-9a62-29fa37ab318e
+		summarizeBy: none
+		sourceColumn: sale_date_key
+
+		annotation SummarizationSetBy = User
+
+	column delivery_date_key
+		dataType: int64
+		isHidden
+		lineageTag: 05eb106e-6407-4133-ba7c-6334475a9ae6
+		summarizeBy: none
+		sourceColumn: delivery_date_key
+
+		annotation SummarizationSetBy = User
+
+	column discount_try
+		dataType: int64
+		isHidden
+		lineageTag: 22810dfa-ccda-4f8e-abf4-81bd1e31b288
+		summarizeBy: none
+		sourceColumn: discount_try
+
+		annotation SummarizationSetBy = User
+
+	column realized_discount_pct
+		dataType: double
+		isHidden
+		lineageTag: 5fae47fc-493c-4480-ae88-a4d86766d28e
+		summarizeBy: none
+		sourceColumn: realized_discount_pct
+
+		annotation SummarizationSetBy = User
+
+	column days_to_delivery
+		dataType: int64
+		isHidden
+		lineageTag: bf761396-56f0-45ea-b0b5-8fe3aba1c3ab
+		summarizeBy: none
+		sourceColumn: days_to_delivery
+
+		annotation SummarizationSetBy = User
+
+	partition fact_sales = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\fact_sales\fact_sales.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,80 @@
+table dim_dealer
+	lineageTag: 0bef71af-ba48-40ca-98ae-b16daac66cda
+
+	column dealer_id
+		dataType: string
+		isHidden
+		lineageTag: 8e0b9216-358d-4f33-80cf-5f1bdc99b89f
+		summarizeBy: none
+		sourceColumn: dealer_id
+
+		annotation SummarizationSetBy = User
+
+	column dealer_name
+		dataType: string
+		lineageTag: fccea833-68ac-4cf2-a298-7ff3006ede66
+		summarizeBy: none
+		sourceColumn: dealer_name
+
+		annotation SummarizationSetBy = User
+
+	column city
+		dataType: string
+		lineageTag: 2b14e2a8-9155-4be4-bda5-98cc79055923
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = User
+
+	column region
+		dataType: string
+		lineageTag: 4f4e9013-71f3-4a42-b296-3c97364c4f0c
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = User
+
+	column dealer_type
+		dataType: string
+		lineageTag: 9a757791-806b-4b7a-913e-b69864d18d72
+		summarizeBy: none
+		sourceColumn: dealer_type
+
+		annotation SummarizationSetBy = User
+
+	column opened_year
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 61ac3b6f-46a2-4f5e-a9a2-3f7f796a2a24
+		summarizeBy: none
+		sourceColumn: opened_year
+
+		annotation SummarizationSetBy = User
+
+	column is_active
+		dataType: boolean
+		lineageTag: 96a6a447-7e17-4545-8614-38deb760a2e1
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = User
+
+	column dealer_label
+		dataType: string
+		lineageTag: b517c900-b532-476a-9eaa-130d5a2ca2fa
+		summarizeBy: none
+		sourceColumn: dealer_label
+
+		annotation SummarizationSetBy = User
+
+	partition dim_dealer = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_dealer\dim_dealer.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

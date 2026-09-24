@@ -1,0 +1,46 @@
+table dim_lead_source
+	lineageTag: 8d7ae927-b08d-4e93-a03b-0b41535ae451
+
+	column source
+		dataType: string
+		isHidden
+		lineageTag: e575052e-a8ee-4188-94f1-4c59e0a4548e
+		summarizeBy: none
+		sourceColumn: source
+
+		annotation SummarizationSetBy = User
+
+	column source_label
+		dataType: string
+		lineageTag: d34d5df6-3ca5-4e47-8e72-1646ab58b022
+		summarizeBy: none
+		sourceColumn: source_label
+
+		annotation SummarizationSetBy = User
+
+	column source_group
+		dataType: string
+		lineageTag: 7f1f7210-9254-4057-a62e-df4e3b3370e6
+		summarizeBy: none
+		sourceColumn: source_group
+
+		annotation SummarizationSetBy = User
+
+	column is_digital
+		dataType: boolean
+		lineageTag: fee9bca6-13a3-426e-854c-26a474c8328a
+		summarizeBy: none
+		sourceColumn: is_digital
+
+		annotation SummarizationSetBy = User
+
+	partition dim_lead_source = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_lead_source\dim_lead_source.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

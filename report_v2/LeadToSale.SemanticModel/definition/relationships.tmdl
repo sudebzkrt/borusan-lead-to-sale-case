@@ -1,0 +1,73 @@
+relationship 9f15d231-9c98-4ddc-937b-289ff80d1d87
+	fromColumn: fact_leads.created_date_key
+	toColumn: dim_date.date_key
+
+relationship a4436375-4056-4b68-b956-6d4ffd5939bf
+	isActive: false
+	fromColumn: fact_leads.closed_date_key
+	toColumn: dim_date.date_key
+
+relationship 3893da26-b628-4fa2-af1d-d6af0f5d0b3c
+	fromColumn: fact_leads.dealer_id
+	toColumn: dim_dealer.dealer_id
+
+relationship d258b703-1ed6-42cc-b860-b50b031cd39d
+	fromColumn: fact_leads.advisor_id
+	toColumn: dim_advisor.advisor_id
+
+relationship d44cda38-6cad-4b48-9c92-ab34a1dabd01
+	fromColumn: fact_leads.vehicle_id
+	toColumn: dim_vehicle.vehicle_id
+
+relationship 517e6bcb-1347-46e6-935f-0490b744f0f4
+	fromColumn: fact_leads.customer_id
+	toColumn: dim_customer.customer_id
+
+relationship 2b5f6836-35d8-4b06-a9ee-1a5495e182c4
+	fromColumn: fact_leads.source
+	toColumn: dim_lead_source.source
+
+relationship 7d045806-9cba-413e-a11a-8fbd36975031
+	fromColumn: fact_sales.sale_date_key
+	toColumn: dim_date.date_key
+
+relationship ef74c8ea-22f3-4326-9eb8-4a832c1e0db4
+	fromColumn: fact_sales.dealer_id
+	toColumn: dim_dealer.dealer_id
+
+relationship 003ca509-7f7e-4f62-a184-8db8df00fd0c
+	fromColumn: fact_sales.advisor_id
+	toColumn: dim_advisor.advisor_id
+
+relationship 81d4053c-5494-4077-98ed-5c9bfeefe0be
+	fromColumn: fact_sales.vehicle_id
+	toColumn: dim_vehicle.vehicle_id
+
+relationship 946bca81-b063-406d-9aa5-0d8ad456519e
+	fromColumn: fact_sales.customer_id
+	toColumn: dim_customer.customer_id
+
+relationship 3265c2e2-ba4a-4560-b0e4-9c3be651cf50
+	fromColumn: fact_offers.offer_date_key
+	toColumn: dim_date.date_key
+
+relationship 24f55f28-5fc4-4438-8cab-5df5b04662e6
+	fromColumn: fact_offers.dealer_id
+	toColumn: dim_dealer.dealer_id
+
+relationship 6dd980c8-00b4-4e6a-98b9-1ee8f4f0d8d8
+	fromColumn: fact_offers.vehicle_id
+	toColumn: dim_vehicle.vehicle_id
+
+relationship 050a8010-d97e-4ad2-a359-f65651971997
+	fromColumn: fact_test_drives.scheduled_date_key
+	toColumn: dim_date.date_key
+
+relationship ec79f3bf-8a2e-4da8-806a-f499fb4c2262
+	fromColumn: fact_test_drives.dealer_id
+	toColumn: dim_dealer.dealer_id
+
+relationship c2f43332-9855-4aa2-aa21-d02e8dd96e5e
+	fromColumn: fact_test_drives.vehicle_id
+	toColumn: dim_vehicle.vehicle_id
+

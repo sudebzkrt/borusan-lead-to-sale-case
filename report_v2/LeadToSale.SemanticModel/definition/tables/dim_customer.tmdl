@@ -1,0 +1,117 @@
+table dim_customer
+	lineageTag: cfb259a3-137d-4d61-a809-de534888fbc4
+
+	column customer_id
+		dataType: string
+		isHidden
+		lineageTag: 5dc2bb44-ac29-4f6f-8988-9814d663c06f
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = User
+
+	column full_name
+		dataType: string
+		lineageTag: 20a8f7f4-eb3e-442c-b1b4-2978283b2268
+		summarizeBy: none
+		sourceColumn: full_name
+
+		annotation SummarizationSetBy = User
+
+	column customer_type
+		dataType: string
+		lineageTag: e7c24bbb-5912-42ac-bfab-9555acbb8f32
+		summarizeBy: none
+		sourceColumn: customer_type
+
+		annotation SummarizationSetBy = User
+
+	column gender
+		dataType: string
+		lineageTag: 4cbba31b-f9de-4107-8d0a-09670602b484
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = User
+
+	column city
+		dataType: string
+		lineageTag: 94a71515-0c2b-4bca-a89f-750dcd241d0b
+		summarizeBy: none
+		sourceColumn: city
+
+		annotation SummarizationSetBy = User
+
+	column birth_date
+		dataType: dateTime
+		isHidden
+		formatString: yyyy-mm-dd
+		lineageTag: be0c7c13-05c4-4d35-8802-bb3f02cd12b4
+		summarizeBy: none
+		sourceColumn: birth_date
+
+		annotation SummarizationSetBy = User
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column kvkk_consent
+		dataType: boolean
+		lineageTag: c216f209-900d-4138-8a4b-9b50d87e6678
+		summarizeBy: none
+		sourceColumn: kvkk_consent
+
+		annotation SummarizationSetBy = User
+
+	column marketing_consent
+		dataType: boolean
+		lineageTag: 7fb16f22-1721-441c-a5eb-e0b422520030
+		summarizeBy: none
+		sourceColumn: marketing_consent
+
+		annotation SummarizationSetBy = User
+
+	column created_at
+		dataType: dateTime
+		formatString: yyyy-mm-dd
+		lineageTag: 65307eb7-28f9-4c87-9cee-7f77d9864579
+		summarizeBy: none
+		sourceColumn: created_at
+
+		annotation SummarizationSetBy = User
+
+	column source_record_count
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a5bf80ac-8e1a-4a96-9dee-6d57c99af56b
+		summarizeBy: none
+		sourceColumn: source_record_count
+
+		annotation SummarizationSetBy = User
+
+	column age_band
+		dataType: string
+		lineageTag: 467a5b36-288f-44da-bdc8-c41f38218fd0
+		summarizeBy: none
+		sourceColumn: age_band
+
+		annotation SummarizationSetBy = User
+
+	column is_corporate
+		dataType: boolean
+		lineageTag: 8e9b75f1-606b-4d68-bd8d-dd3d7b118c76
+		summarizeBy: none
+		sourceColumn: is_corporate
+
+		annotation SummarizationSetBy = User
+
+	partition dim_customer = m
+		mode: import
+		source =
+				let
+				    Source = Parquet.Document(File.Contents(DataFolder & "\dim_customer\dim_customer.parquet"))
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+
